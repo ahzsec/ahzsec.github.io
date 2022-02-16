@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>AHZ</title>
+    
+    
+    
+    <link>/</link>
+    <description>Recent content on AHZ</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 30 Jun 2021 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Demystifying Solidity Wargames: Smarx&#39;s capture the ether</title>
+      <link>/post/demystifying-solidity-wargames-smarxs-capture-the-ether/</link>
+      <pubDate>Wed, 30 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/post/demystifying-solidity-wargames-smarxs-capture-the-ether/</guid>
+      <description>
+        
+          &lt;img src=&#34;/img/Demystifying-solidity-wargames-smarx-capture-the-ether/cover.png&#34;/&gt;
+          
+        
+        
+        
+          In this write-up, I will demystify how to conquer the Smarx&#39;s capture the ether wargame.
+          
+        
+        </description>
+    </item>
+    
+    <item>
+      <title>Demystifying Solidity Wargames: Openzeppelin&#39;s ethernaut</title>
+      <link>/post/demystifying-solidity-wargames-openzeppelins-ethernaut/</link>
+      <pubDate>Wed, 09 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/post/demystifying-solidity-wargames-openzeppelins-ethernaut/</guid>
+      <description>
+        
+          &lt;img src=&#34;/img/Demystifying-solidity-wargames-openzeppelin-ethernaut/cover.jpg&#34;/&gt;
+          
+        
+        
+        
+          In this write-up, I will demystify how to conquer the Openzeppelin&#39;s ethernaut wargame.
+          
+        
+        </description>
+    </item>
+    
+    <item>
+      <title>THE GRINCH NETWORKS IS DOWN!</title>
+      <link>/post/the-grinch-networks-is-down/</link>
+      <pubDate>Thu, 21 Jan 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/post/the-grinch-networks-is-down/</guid>
+      <description>
+        
+          &lt;img src=&#34;/img/THE-GRINCH-NETWORKS-IS-DOWN%21/cover.png&#34;/&gt;
+          
+        
+        
+        
+          After 28 days of non-stop hacking, I was announced as the winner of Hackerone&#39;s Hackyholidays 2020-2021, In this write-up, I will explain how I was able to break the grinch networks down, for once and for all!
+          
+        
+        </description>
+    </item>
+    
+    <item>
+      <title>Chaining vulnerabilities leads to account takeover</title>
+      <link>/post/chaining-vulnerabilities-leads-to-account-takeover/</link>
+      <pubDate>Tue, 01 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/chaining-vulnerabilities-leads-to-account-takeover/</guid>
+      <description>
+        
+          &lt;img src=&#34;/img/Chaining-vulnerabilities-leads-to-account-takeover/cover.png&#34;/&gt;
+          
+        
+        
+        
+          In this write-up, I will explain how I was able to chain five vulnerabilities that led to one link click account takeover.
+          
+        
+        </description>
+    </item>
+    
+    <item>
+      <title>Bypassing OTP via reset password</title>
+      <link>/post/bypassing-otp-via-reset-password/</link>
+      <pubDate>Thu, 30 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/bypassing-otp-via-reset-password/</guid>
+      <description>
+        
+          &lt;img src=&#34;/img/Bypassing-OTP-via-reset-password/cover.jpg&#34;/&gt;
+          
+        
+        
+        
+          In this write-up, I will explain how I was able to bypass one-time password by resetting the password via email address.
+          
+        
+        </description>
+    </item>
+    
+    <item>
+      <title>About</title>
+      <link>/about/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/about/</guid>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          Hi there#
+          
+        
+        </description>
+    </item>
+    
+    <item>
+      <title>Archive</title>
+      <link>/archive/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>/archive/</guid>
+      <description>
+        
+          
+          
+          
+        
+        
+        
+          
+          
+        
+        </description>
+    </item>
+    
+  </channel>
+</rss>

