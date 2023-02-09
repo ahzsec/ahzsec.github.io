@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <title>
+        CSRF leads to account takeover in American Airlines ::
+        AHZ
+      </title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta
+  name="description"
+  content="I discovered these vulnerabilities in a private program, I will name it: target.com, Before we keep going on explaining we should consider that these vulnerabilities occurred due to wrong application of the reset-password method via API and other internal functions.
+While I was doing recon in this target, I realized that this app uses different API’s to manage functionalities and methods, So I chose to test main methods such as sign-in and reset-password methods, I wasn’t able to recognize weird implementations in the sign-in method, So I directly tried to reset my account password via the reset-password method."
+/>
+<meta
+  name="keywords"
+  content=""
+/>
+<meta name="robots" content="noodp" />
+<link rel="canonical" href="/post/csrf-leads-to-account-takeover-in-american-airlines/" />
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/style.css" />
+
+<link rel="stylesheet" href="/style.css" />
+
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/apple-touch-icon-144-precomposed.png" />
+<link rel="shortcut icon" href="/img/favicon.png" />
+
+
+<link href="/fonts/Inter-Italic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/fonts/Inter-Regular.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/fonts/Inter-Medium.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/fonts/Inter-MediumItalic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/fonts/Inter-Bold.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/fonts/Inter-BoldItalic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="CSRF leads to account takeover in American Airlines"/>
+<meta name="twitter:description" content="In this write-up, I will explain how I was able to chain five vulnerabilities that led to one link click account takeover."/>
+
+
+
+<meta property="og:title" content="CSRF leads to account takeover in American Airlines" />
+<meta property="og:description" content="In this write-up, I will explain how I was able to chain five vulnerabilities that led to one link click account takeover." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/csrf-leads-to-account-takeover-in-american-airlines/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2021-05-22T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-05-22T00:00:00+00:00" /><meta property="og:site_name" content="AHZ" />
+
+
+
+
+
+
+  </head>
+  <body class="light-theme">
+    <div class="container">
+      <header class="header">
+  <span class="header__inner">
+    <a
+  href="/"
+  class="logo"
+  style="text-decoration: none;"
+>
+  
+
+    <span class="logo__text"
+      >AHZ</span
+    >
+
+  
+</a>
+
+    <span class="header__right">
+      
+        <nav class="menu">
+  <ul class="menu__inner menu__inner--desktop">
+    
+      
+        
+          <li><a href="/about">About</a></li>
+        
+      
+      
+      
+  </ul>
+
+  <ul class="menu__inner menu__inner--mobile">
+    
+      
+        <li><a href="/about">About</a></li>
+      
+    
+  </ul>
+</nav>
+
+        <span class="menu-trigger">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M0 0h24v24H0z" fill="none" />
+            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
+          </svg>
+        </span>
+      
+      <span class="theme-toggle">
+        <svg
+  class="theme-toggler"
+  width="24"
+  height="24"
+  viewBox="0 0 48 48"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"
+  />
+</svg>
+
+      </span>
+    </span>
+  </span>
+</header>
+
+
+      <div class="content">
+        
+  
+  
+
+  <article class="post">
+    <h1 class="post-title">CSRF leads to account takeover in American Airlines</h1>
+    <div class="post-meta">
+      
+        <time class="post-date">
+          2021-05-22
+        </time>
+
+        
+          
+        
+      
+
+      
+
+      
+        
+          <span class="post-read-time"
+            >— 3 min read</span
+          >
+        
+      
+    </div>
+
+    
+      <span class="post-tags">
+        
+          <a href="/tags/csrf/">#CSRF</a>&nbsp;
+        
+          <a href="/tags/account-takeover/">#Account takeover</a>&nbsp;
+        
+          <a href="/tags/bug-bounty/">#Bug Bounty</a>&nbsp;
+        
+      </span>
+    
+
+    
+      <figure class="post-cover">
+  
+    <img src="/img/CSRF-leads-to-account-takeover-in-American-Airlines/cover.jpg" alt="CSRF leads to account takeover in American Airlines"/>
+  
+
+  
+</figure>
+
+    
+
+    <div class="post-content">
+      
+      <blockquote>
+<p>I discovered these vulnerabilities in a private program, I will name it: <em><strong>target.com</strong></em>, Before we keep going on explaining we should consider that these vulnerabilities occurred due to wrong application of the reset-password method via API and other internal functions.</p>
+</blockquote>
+<p>While I was doing recon in this target, I realized that this app uses different API’s to manage functionalities and methods, So I chose to test main methods such as sign-in and reset-password methods, I wasn’t able to recognize weird implementations in the sign-in method, So I directly tried to reset my account password via the reset-password method.</p>
+<p>After resetting my account password, I realized that there is a weird “to” JSON parameter in the reset-password method request.</p>
+<p><img src="https://cdn-images-1.medium.com/max/2000/1*0f6_21NID0M20cdhTXg4SQ.png" alt="Reset password request"></p>
+<p>And after checking my reset-password email, I was able to validate that this parameter is reflected in the reset-password link.</p>
+<p><img src="https://cdn-images-1.medium.com/max/2484/1*_brJh7hgvP7MVoBBgsi9pw.png" alt="Reset password email"></p>
+<p>I made further requests to make sure the parameter is reflected in the reset-password link, And I was right.</p>
+<p><img src="https://cdn-images-1.medium.com/max/2176/1*Sc4Rg9dYrZWuPdc_NMFGgg.png" alt="Reset password email"></p>
+<p>I thought about escalating this into open-redirect which leads to the leakage of the reset-password secret code, So I tried Host header injection via Host header, Referer header, Origin header, and Host injection in “to” JSON parameter value, I wasn’t able to inject my own host, This means I should find internal open-redirect in the same target host which leads to the leakage of the reset-password secret code.</p>
+<p>After testing some different methods and functionalities, I was able to identify two internal open-redirects in those endpoints:</p>
+<pre><code>https://target.com/api/otc/login?response_type=code&amp;client_id=web&amp;redirect_uri=https://host/
+
+https://target.com/api/oidc/preauthorized?response_type=code&amp;client_id=web&amp;redirect_uri=https://host/
+</code></pre>
+<p>Those open-redirects leaked another secret code and it’s a vulnerability by itself, But I chose to escalate this into a one link click account takeover.</p>
+<p>After injecting one of the open-redirects into the reset-password link via the “to” JSON parameter value.</p>
+<p><img src="https://cdn-images-1.medium.com/max/2062/1*PnbB2Bv2aa2CdaNC8BrOHw.png" alt="Reset password request"></p>
+<p>I was able to redirect the reset-password secret code and other secret code to my own host by one reset-password link click via the reset-password email.</p>
+<p><img src="https://cdn-images-1.medium.com/max/2220/1*hVfeNRj0kDRe8keRIRC04A.png" alt="Reset password email"></p>
+<p>And here we are, The code in the path is the reset-password secret code, And the code in the query is the other secret code, All leaked into my host.</p>
+<p><img src="https://cdn-images-1.medium.com/max/2312/1*4IncmtfzSDnvQHiuGJDyqA.png" alt="My Host event"></p>
+<p>But wait, While I was testing the reset-password method, I was able to identify two other vulnerabilities, Those vulnerabilities made it obvious that I will be able to force the user to click on the poisoned link, Which leads to the user full account takeover.</p>
+<p>The first vulnerability is the lack of rate-limiting in the reset-password method, I was able to send more than 2000 requests, Which will DDOS the user email, And force them to click on the poisoned reset-password link, Which leads to the leakage of the reset-password secret code.</p>
+<p>The other vulnerability is the lack of invalidating the reset-password secret code, And therefore I was able to use the reset-password secret code as much as I want, And this secret code wouldn’t be invalidated, Even if the user requested another reset-password secret code and did reset their password, The reset-password secret code leaked to my host will be valid and usable.</p>
+<h2 id="summary">
+  Summary
+  <a href="#summary" class="h-anchor" aria-hidden="true">#</a>
+</h2>
+<blockquote>
+<p>I was able to chain five vulnerabilities: Two internal open-redirect, Resources injecting in the reset-password link, Lack of rate-limiting in the reset-password method, And lack of invalidating the reset-password secret code, I was able to escalate them into one link click account takeover.</p>
+</blockquote>
+<h2 id="timeline">
+  Timeline
+  <a href="#timeline" class="h-anchor" aria-hidden="true">#</a>
+</h2>
+<ul>
+<li>Report (Nov 23rd)</li>
+<li>First response (Nov 24th)</li>
+</ul>
+
+    </div>
+    
+      
+        <div class="pagination">
+          <div class="pagination__title">
+            <span class="pagination__title-h"
+              >Read other posts</span
+            >
+            <hr />
+          </div>
+          <div class="pagination__buttons">
+            
+              <span class="button previous">
+                <a href="/post/demystifying-solidity-wargames-openzeppelins-ethernaut/">
+                  <span class="button__icon">←</span>
+                  <span class="button__text">Demystifying Solidity Wargames: Openzeppelin&#39;s ethernaut</span>
+                </a>
+              </span>
+            
+            
+              <span class="button next">
+                <a href="/post/the-grinch-networks-is-down/">
+                  <span class="button__text">THE GRINCH NETWORKS IS DOWN!</span>
+                  <span class="button__icon">→</span>
+                </a>
+              </span>
+            
+          </div>
+        </div>
+      
+    
+
+    
+      
+        
+
+      
+    
+  </article>
+
+      </div>
+
+      
+        <footer class="footer">
+  <div class="footer__inner">
+    
+      <a
+  href="/"
+  class="logo"
+  style="text-decoration: none;"
+>
+  
+
+    <span class="logo__text"
+      >AHZ</span
+    >
+
+  
+</a>
+
+      <div class="copyright">
+        <span>© 2023. All rights reserved.</span>
+
+      </div>
+    
+  </div>
+</footer>
+
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
+
+
+      
+    </div>
+
+    
+  </body>
+</html>

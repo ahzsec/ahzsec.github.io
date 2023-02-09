@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Chaining on AHZ</title>
+    
+    
+    
+    <link>/tags/chaining/</link>
+    <description>Recent content in Chaining on AHZ</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 01 Dec 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/chaining/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Chaining vulnerabilities leads to account takeover</title>
+      <link>/post/chaining-vulnerabilities-leads-to-account-takeover/</link>
+      <pubDate>Tue, 01 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/chaining-vulnerabilities-leads-to-account-takeover/</guid>
+      <description>
+        
+          &lt;img src=&#34;/img/Chaining-vulnerabilities-leads-to-account-takeover/cover.png&#34;/&gt;
+          
+        
+        
+        
+          In this write-up, I will explain how I was able to chain five vulnerabilities that led to one link click account takeover.
+          
+        
+        </description>
+    </item>
+    
+  </channel>
+</rss>

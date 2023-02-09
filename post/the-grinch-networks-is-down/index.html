@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <title>
+        THE GRINCH NETWORKS IS DOWN! ::
+        AHZ
+      </title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta
+  name="description"
+  content="Summary#DAYS ONGOING#DAY 1: Cleartext Storage of Sensitive Information (CWE-312)#The first thing I do when I am attacking a target, Is sending its traffic into Burp suite, So I can see what&amp;rsquo;s really happening in the background, After sending the grinch network traffic into Burp suite, I was able to catch a robots.txt file.
+I checked the file and I found the first flag{48104912-28b0-494a-9995-a203d1e261e7}, The first key to shut the grinch network down."
+/>
+<meta
+  name="keywords"
+  content=""
+/>
+<meta name="robots" content="noodp" />
+<link rel="canonical" href="/post/the-grinch-networks-is-down/" />
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/style.css" />
+
+<link rel="stylesheet" href="/style.css" />
+
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/apple-touch-icon-144-precomposed.png" />
+<link rel="shortcut icon" href="/img/favicon.png" />
+
+
+<link href="/fonts/Inter-Italic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/fonts/Inter-Regular.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/fonts/Inter-Medium.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/fonts/Inter-MediumItalic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/fonts/Inter-Bold.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/fonts/Inter-BoldItalic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="THE GRINCH NETWORKS IS DOWN!"/>
+<meta name="twitter:description" content="After 28 days of non-stop hacking, I was announced as the winner of Hackerone&#39;s Hackyholidays 2020-2021, In this write-up, I will explain how I was able to break the grinch networks down, for once and for all!"/>
+
+
+
+<meta property="og:title" content="THE GRINCH NETWORKS IS DOWN!" />
+<meta property="og:description" content="After 28 days of non-stop hacking, I was announced as the winner of Hackerone&#39;s Hackyholidays 2020-2021, In this write-up, I will explain how I was able to break the grinch networks down, for once and for all!" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/the-grinch-networks-is-down/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2021-01-21T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-01-21T00:00:00+00:00" /><meta property="og:site_name" content="AHZ" />
+
+
+
+
+
+
+  </head>
+  <body class="light-theme">
+    <div class="container">
+      <header class="header">
+  <span class="header__inner">
+    <a
+  href="/"
+  class="logo"
+  style="text-decoration: none;"
+>
+  
+
+    <span class="logo__text"
+      >AHZ</span
+    >
+
+  
+</a>
+
+    <span class="header__right">
+      
+        <nav class="menu">
+  <ul class="menu__inner menu__inner--desktop">
+    
+      
+        
+          <li><a href="/files/cv.pdf">About</a></li>
+        
+      
+      
+      
+  </ul>
+
+  <ul class="menu__inner menu__inner--mobile">
+    
+      
+        <li><a href="/files/cv.pdf">About</a></li>
+      
+    
+  </ul>
+</nav>
+
+        <span class="menu-trigger">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M0 0h24v24H0z" fill="none" />
+            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
+          </svg>
+        </span>
+      
+      <span class="theme-toggle">
+        <svg
+  class="theme-toggler"
+  width="24"
+  height="24"
+  viewBox="0 0 48 48"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"
+  />
+</svg>
+
+      </span>
+    </span>
+  </span>
+</header>
+
+
+      <div class="content">
+        
+  
+  
+
+  <article class="post">
+    <h1 class="post-title">THE GRINCH NETWORKS IS DOWN!</h1>
+    <div class="post-meta">
+      
+        <time class="post-date">
+          2021-01-21
+        </time>
+
+        
+          
+        
+      
+
+      
+
+      
+        
+          <span class="post-read-time"
+            >— 17 min read</span
+          >
+        
+      
+    </div>
+
+    
+      <span class="post-tags">
+        
+          <a href="/tags/hackerone/">#Hackerone</a>&nbsp;
+        
+          <a href="/tags/hackyholidays/">#Hackyholidays</a>&nbsp;
+        
+          <a href="/tags/ctf/">#CTF</a>&nbsp;
+        
+      </span>
+    
+
+    
+      <figure class="post-cover">
+  
+    <img src="/img/THE-GRINCH-NETWORKS-IS-DOWN%21/cover.png" alt="THE GRINCH NETWORKS IS DOWN!"/>
+  
+
+  
+</figure>
+
+    
+
+    <div class="post-content">
+      
+      <h1 id="summary">
+  Summary
+  <a href="#summary" class="h-anchor" aria-hidden="true">#</a>
+</h1>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/summary.jpg" alt="Summary"></p>
+<h1 id="days-ongoing">
+  DAYS ONGOING
+  <a href="#days-ongoing" class="h-anchor" aria-hidden="true">#</a>
+</h1>
+<h2 id="day-1-cleartext-storage-of-sensitive-information-cwe-312">
+  DAY 1: Cleartext Storage of Sensitive Information (CWE-312)
+  <a href="#day-1-cleartext-storage-of-sensitive-information-cwe-312" class="h-anchor" aria-hidden="true">#</a>
+</h2>
+<p>The first thing I do when I am attacking a target, Is sending its traffic into Burp suite, So I can see what&rsquo;s really happening in the background, After sending the grinch network traffic into Burp suite, I was able to catch a robots.txt file.</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-0.png" alt=""></p>
+<p>I checked the file and I found the first flag{48104912-28b0-494a-9995-a203d1e261e7}, The first key to shut the grinch network down.</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-1.png" alt=""></p>
+<h2 id="day-2-s3cr3t-ar3a-cleartext-storage-of-sensitive-information-cwe-312">
+  DAY 2 [s3cr3t-ar3a]: Cleartext Storage of Sensitive Information (CWE-312)
+  <a href="#day-2-s3cr3t-ar3a-cleartext-storage-of-sensitive-information-cwe-312" class="h-anchor" aria-hidden="true">#</a>
+</h2>
+<p>When I found the first flag, I realized there is another directory in the robots.txt file, The directory name was <code>/s3cr3t-ar3a</code>, I saved the directory and come back to it on day two, There was a warning claiming that the page has been moved.</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-3.png" alt=""></p>
+<p>When I saw the warning, I gave in to my habits and directly checked the client-side source, And it was there, I was able to find the second flag{b7ebcb75-9100-4f91-8454-cfb9574459f7} in the client-side source code.</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-4.png" alt=""></p>
+<h2 id="day-3-people-rater-insecure-direct-object-reference-idor-cwe-639">
+  DAY 3 [People Rater]: Insecure Direct Object Reference (IDOR) (CWE-639)
+  <a href="#day-3-people-rater-insecure-direct-object-reference-idor-cwe-639" class="h-anchor" aria-hidden="true">#</a>
+</h2>
+<p>Stupid grinch made a people rater, But he was stupid enough to implement it with the poorest security ever! When I visited the people rater app for the first time I was clicking everywhere to intercept the requests and understand how the app really works, The app has <code>/people-rater/entry?id=</code> endpoint, and I will be able to retrieve people rate via this endpoint.</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-9.png" alt=""></p>
+<p>I also realized all people ids are base64.</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-8.png" alt=""></p>
+<p>So I decoded the first five ids.</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-5.png" alt=""></p>
+<p>At this time I realized that <code>{&quot;id&quot;:1}</code> is missing, I encoded it into base64 and I send it to the entry endpoint.</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-7.png" alt=""></p>
+<p>I was able to retrieve the individual rate, Which was grinch himself, And I was able to found the third flag{b705fb11-fb55-442f-847f-0931be82ed9a}, Nine more flags to shut the grinch network down!</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-6.png" alt=""></p>
+<h2 id="day-4-swag-shop-insecure-storage-of-sensitive-information-cwe-922--insecure-direct-object-reference-idor-cwe-639">
+  DAY 4 [Swag Shop]: Insecure Storage of Sensitive Information (CWE-922) &amp; Insecure Direct Object Reference (IDOR) (CWE-639)
+  <a href="#day-4-swag-shop-insecure-storage-of-sensitive-information-cwe-922--insecure-direct-object-reference-idor-cwe-639" class="h-anchor" aria-hidden="true">#</a>
+</h2>
+<p>When I visited the swag shop for the first time, As always, I give in to my habits and checked the client-side source, I was able to detect the swag shop purchase management API.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">$</span>.<span style="color:#a6e22e">getJSON</span>(<span style="color:#e6db74">&#34;/swag-shop/api/stock&#34;</span>, <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">o</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">$</span>.<span style="color:#a6e22e">each</span>(<span style="color:#a6e22e">o</span>.<span style="color:#a6e22e">products</span>, <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">o</span>, <span style="color:#a6e22e">t</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">$</span>(<span style="color:#e6db74">&#34;.product-holder&#34;</span>).<span style="color:#a6e22e">append</span>(<span style="color:#e6db74">&#39;&lt;div class=&#34;col-md-4 product-box&#34;&gt;&lt;div&gt;&lt;img class=&#34;img-responsive&#34; src=&#34;/assets/images/product_image_coming_soon.jpg&#34;&gt;&lt;/div&gt;&lt;div class=&#34;text-center product-name&#34;&gt;&#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">name</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;&lt;/div&gt;&lt;div class=&#34;text-center product-cost&#34;&gt;&amp;dollar;&#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">cost</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;&lt;/div&gt;&lt;div class=&#34;text-center&#34;&gt;&lt;input type=&#34;button&#34; data-product-id=&#34;&#39;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">id</span> <span style="color:#f92672">+</span> <span style="color:#e6db74">&#39;&#34; class=&#34;btn btn-success purchase&#34; value=&#34;Purchase&#34;&gt;&lt;/div&gt;&lt;/div&gt;&#39;</span>)
+</span></span><span style="display:flex;"><span>    }), <span style="color:#a6e22e">$</span>(<span style="color:#e6db74">&#34;input.purchase&#34;</span>).<span style="color:#a6e22e">click</span>(<span style="color:#66d9ef">function</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">$</span>.<span style="color:#a6e22e">post</span>(<span style="color:#e6db74">&#34;/swag-shop/api/purchase&#34;</span>, {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">id</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">$</span>(<span style="color:#66d9ef">this</span>).<span style="color:#a6e22e">attr</span>(<span style="color:#e6db74">&#34;data-product-id&#34;</span>)
+</span></span><span style="display:flex;"><span>        }, <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">o</span>) {
+</span></span><span style="display:flex;"><span>            window.<span style="color:#a6e22e">location</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;/swag-shop/checkout/&#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">o</span>.<span style="color:#a6e22e">checkoutURL</span>
+</span></span><span style="display:flex;"><span>        }).<span style="color:#a6e22e">fail</span>(<span style="color:#66d9ef">function</span>() {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">$</span>(<span style="color:#e6db74">&#34;#login_modal&#34;</span>).<span style="color:#a6e22e">modal</span>(<span style="color:#e6db74">&#34;show&#34;</span>)
+</span></span><span style="display:flex;"><span>        })
+</span></span><span style="display:flex;"><span>    })
+</span></span><span style="display:flex;"><span>}), <span style="color:#a6e22e">$</span>(<span style="color:#e6db74">&#34;.loginbtn&#34;</span>).<span style="color:#a6e22e">click</span>(<span style="color:#66d9ef">function</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">$</span>.<span style="color:#a6e22e">post</span>(<span style="color:#e6db74">&#34;/swag-shop/api/login&#34;</span>, {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">username</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">$</span>(<span style="color:#e6db74">&#39;input[name=&#34;username&#34;]&#39;</span>).<span style="color:#a6e22e">val</span>(),
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">password</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">$</span>(<span style="color:#e6db74">&#39;input[name=&#34;password&#34;]&#39;</span>).<span style="color:#a6e22e">val</span>()
+</span></span><span style="display:flex;"><span>    }, <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">o</span>) {
+</span></span><span style="display:flex;"><span>        document.<span style="color:#a6e22e">cookie</span>(<span style="color:#e6db74">&#34;token=&#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">o</span>.<span style="color:#a6e22e">token</span>), window.<span style="color:#a6e22e">location</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;/swag-shop&#34;</span>
+</span></span><span style="display:flex;"><span>    }).<span style="color:#a6e22e">fail</span>(<span style="color:#66d9ef">function</span>() {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">alert</span>(<span style="color:#e6db74">&#34;Login Failed&#34;</span>)
+</span></span><span style="display:flex;"><span>    })
+</span></span><span style="display:flex;"><span>});
+</span></span></code></pre></div><h3 id="there-were-three-interesting-endpoints-in-the-javascript-client-source-code">
+  There were three interesting endpoints in the javascript client-source code:
+  <a href="#there-were-three-interesting-endpoints-in-the-javascript-client-source-code" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<ul>
+<li>The first endpoint was <code>/api/stock</code>, Which retrieves the swag shop stock content.</li>
+</ul>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-12.png" alt=""></p>
+<ul>
+<li>The second endpoint was <code>/api/purchase</code>, I decided to try to purchase some swag, But I wasn&rsquo;t able to do it before logging in.</li>
+</ul>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-14.png" alt=""></p>
+<p>There was also an interesting directory <code>&quot;/swag-shop/checkout/&quot;+o.checkoutURL</code> embedded in the purchase post request.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">$</span>.<span style="color:#a6e22e">post</span>(<span style="color:#e6db74">&#34;/swag-shop/api/purchase&#34;</span>, {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">id</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">$</span>(<span style="color:#66d9ef">this</span>).<span style="color:#a6e22e">attr</span>(<span style="color:#e6db74">&#34;data-product-id&#34;</span>)
+</span></span><span style="display:flex;"><span>    }, <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">o</span>) {
+</span></span><span style="display:flex;"><span>        window.<span style="color:#a6e22e">location</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;/swag-shop/checkout/&#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">o</span>.<span style="color:#a6e22e">checkoutURL</span>
+</span></span><span style="display:flex;"><span>    }).<span style="color:#a6e22e">fail</span>(<span style="color:#66d9ef">function</span>() {
+</span></span><span style="display:flex;"><span>            <span style="color:#a6e22e">$</span>(<span style="color:#e6db74">&#34;#login_modal&#34;</span>).<span style="color:#a6e22e">modal</span>(<span style="color:#e6db74">&#34;show&#34;</span>)
+</span></span><span style="display:flex;"><span>        }
+</span></span></code></pre></div><p>But after reading the javascript code I was sure that I wouldn&rsquo;t be able to use it before retrieving <code>o.checkoutURL</code> from the purchase endpoint.</p>
+<ul>
+<li>The third interesting endpoint was <code>/swag-shop/api/login</code>, Which I was redirected to it when I tried to purchase any swag from the shop.</li>
+</ul>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-15.png" alt=""></p>
+<p>I sent random credentials to the endpoint to make sure if I will be able to brute-force them.</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-16.png" alt=""></p>
+<p>But the response message was well prepared and I wouldn&rsquo;t be able to brute-force the credentials.</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-17.png" alt=""></p>
+<p>At this moment I was sure that it was fuzzing time, I sent the API to ffuf and I was able to detect two interesting new endpoints.</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-18.png" alt=""></p>
+<p>I sent a GET request to the first new endpoint which was <code>/api/sessions</code>, And I was able to retrieve all user&rsquo;s sessions and their cookies.</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-19.png" alt=""></p>
+<p>After decoding the sessions, I was able to detect UUID embedded in the third session user JSON parameter.</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-20.png" alt=""></p>
+<p>At this moment I was sure it was time to visit the <code>/api/user</code> endpoint, But I detected an interesting response.</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-21.png" alt=""></p>
+<p>And without any fuzzing, I added the UUID parameter with the value I detected before to the user API GET request.</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-22.png" alt=""></p>
+<p>And I was able to retrieve the user data with the forth flag{972e7072-b1b6-4bf7-b825-a912d3fd38d6}, Eight more flags to shut the grinch network down!</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-23.png" alt=""></p>
+<h2 id="day-5-secure-login-brute-force-cwe-307--privilege-escalation-capec-233">
+  DAY 5 [Secure Login]: Brute Force (CWE-307) &amp; Privilege Escalation (CAPEC-233)
+  <a href="#day-5-secure-login-brute-force-cwe-307--privilege-escalation-capec-233" class="h-anchor" aria-hidden="true">#</a>
+</h2>
+<p>As always when I see any login page, I directly send random credentials to study how the request being send and what messages are retrieved in the response, After submitting random credentials in the secure login form, I was able to detect an interesting response.</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-24" alt="">
+The login failed response wasn&rsquo;t well sanitized, Which lead to detect the right credentials with brute-forcing, I started by brute-forcing the username with ffuf, And I was able to detect it which was <code>access</code>.</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-25.png" alt=""></p>
+<p>With the same concept and after checking the right username response.</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-27.png" alt=""></p>
+<p>I was able to brute-force the password and detecting it which was <code>computer</code>.</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-26.png" alt=""></p>
+<p>I directly logged in with the credentials I retrieved with brute-forcing.</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-30.png" alt=""></p>
+<p>After logging in, There was an interesting message expose that there is a file to download somewhere, I checked the client-side source but nothing was interesting.</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-28.png" alt=""></p>
+<p>At this time I was thinking about how the app held the login cookie, I found that the cookie is a JSON object encoded into base64.</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-29.png" alt=""></p>
+<p>I turned the admin parameter to true, Encoded the cookie JSON object into base64, And updated the cookie with the new one.</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-31.png" alt=""></p>
+<p>After reloading the page with the new cookie, I was able to detect a new zip file appeared in my secure files form.</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-33.png" alt=""></p>
+<p>I directly download it, And it was secured with a zip file password.</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-34.png" alt=""></p>
+<p>I wrote a python script to brute-force the password which was <code>hahahaha</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> zipfile
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>filename <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;my_secure_files_not_for_you.zip&#39;</span>
+</span></span><span style="display:flex;"><span>dictionary <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;rockyou.txt&#39;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>password <span style="color:#f92672">=</span> <span style="color:#66d9ef">None</span>
+</span></span><span style="display:flex;"><span>file_to_open <span style="color:#f92672">=</span> zipfile<span style="color:#f92672">.</span>ZipFile(filename)
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">with</span> open(dictionary, <span style="color:#e6db74">&#39;r&#39;</span>) <span style="color:#66d9ef">as</span> f:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> line <span style="color:#f92672">in</span> f<span style="color:#f92672">.</span>readlines():
+</span></span><span style="display:flex;"><span>        password <span style="color:#f92672">=</span> line<span style="color:#f92672">.</span>strip(<span style="color:#e6db74">&#39;</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#39;</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">try</span>:
+</span></span><span style="display:flex;"><span>            file_to_open<span style="color:#f92672">.</span>extractall(pwd<span style="color:#f92672">=</span>password)
+</span></span><span style="display:flex;"><span>            password <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;Password found: </span><span style="color:#e6db74">%s</span><span style="color:#e6db74">&#39;</span> <span style="color:#f92672">%</span> password
+</span></span><span style="display:flex;"><span>            print(password)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">except</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">pass</span>
+</span></span></code></pre></div><p>And I was able to retrieve the fifth flag{2e6f9bf8-fdbd-483b-8c18-bdf371b2b004} with a wired image for grinch!</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-32.png" alt=""></p>
+<h2 id="day-6-my-diary-path-traversal-cwe-22">
+  DAY 6 [My Diary]: Path Traversal (CWE-22)
+  <a href="#day-6-my-diary-path-traversal-cwe-22" class="h-anchor" aria-hidden="true">#</a>
+</h2>
+<p>When I visited the my-diary app for the first time, I was interested in how the app carries and filter the <code>/my-diary/?template=</code> parameter.</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-38.png" alt=""></p>
+<p>At this time an Idea came to my mind, If I need to traverse any file I should make sure it already exists in the my-diary app directory, And the simplest file I can think of was <code>index.php</code>, And after I sent a request for <code>/my-diary/?template=index.php</code>.</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-37.png" alt=""></p>
+<p>I was able to retrieve the <code>index.php</code> file source code.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-php" data-lang="php"><span style="display:flex;"><span><span style="color:#66d9ef">if</span>( <span style="color:#a6e22e">isset</span>($_GET[<span style="color:#e6db74">&#34;template&#34;</span>])  ){
+</span></span><span style="display:flex;"><span>    $page <span style="color:#f92672">=</span> $_GET[<span style="color:#e6db74">&#34;template&#34;</span>];
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//remove non allowed characters
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    $page <span style="color:#f92672">=</span> <span style="color:#a6e22e">preg_replace</span>(<span style="color:#e6db74">&#39;/([^a-zA-Z0-9.])/&#39;</span>,<span style="color:#e6db74">&#39;&#39;</span>,$page);
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//protect admin.php from being read
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    $page <span style="color:#f92672">=</span> <span style="color:#a6e22e">str_replace</span>(<span style="color:#e6db74">&#34;admin.php&#34;</span>,<span style="color:#e6db74">&#34;&#34;</span>,$page);
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//I&#39;ve changed the admin file to secretadmin.php for more security!
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    $page <span style="color:#f92672">=</span> <span style="color:#a6e22e">str_replace</span>(<span style="color:#e6db74">&#34;secretadmin.php&#34;</span>,<span style="color:#e6db74">&#34;&#34;</span>,$page);
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//check file exists
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span>( <span style="color:#a6e22e">file_exists</span>($page) ){
+</span></span><span style="display:flex;"><span>       <span style="color:#66d9ef">echo</span> <span style="color:#a6e22e">file_get_contents</span>($page);
+</span></span><span style="display:flex;"><span>    }<span style="color:#66d9ef">else</span>{
+</span></span><span style="display:flex;"><span>        <span style="color:#75715e">//redirect to home
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>        <span style="color:#a6e22e">header</span>(<span style="color:#e6db74">&#34;Location: /my-diary/?template=entries.html&#34;</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">exit</span>();
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}<span style="color:#66d9ef">else</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">//redirect to home
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">header</span>(<span style="color:#e6db74">&#34;Location: /my-diary/?template=entries.html&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">exit</span>();
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>There was an interesting filter in the <code>index.php</code> source code which was working in three parts:</p>
+<ul>
+<li>The first part was regex <code>/([^a-zA-Z0-9.])/</code> filter which filters any symbol but Characters, Numbers, and the dot.</li>
+<li>The second filter was replacing the <code>admin.php</code> string with an empty string.</li>
+<li>The third filter was replacing the <code>secretadmin.php</code> string with an empty string.</li>
+</ul>
+<p>I sent a request for the <code>/my-diary/admin.php</code> file and the response was 404 Not Found.</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-40.png" alt=""></p>
+<p>I also sent a request for <code>/my-diary/secretadmin.php</code>, And after checking the response I was sure that I should find a way to access this file internally.</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-39.png" alt=""></p>
+<p>At this point, I was sure there is a way to bypass those filters and access the <code>secretadmin.php</code>, I started working on the bypass locally.</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-bypass-php.png" alt=""></p>
+<p>And after several minutes, I was able to craft a string payload to bypass the <code>secretadmin.php</code> file filter.</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-41.png" alt=""></p>
+<p>I directly sent the bypass into <code>/my-diary/?template=</code> parameter.</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-42.png" alt=""></p>
+<p>And I was able to retrieve the sixth flag{18b130a7-3a79-4c70-b73b-7f23fa95d395}, More six flags to defeat the grinch!</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-43.png" alt=""></p>
+<h2 id="day-7-hate-mail-generator-path-traversal-cwe-22">
+  DAY 7 [Hate Mail Generator]: Path Traversal (CWE-22)
+  <a href="#day-7-hate-mail-generator-path-traversal-cwe-22" class="h-anchor" aria-hidden="true">#</a>
+</h2>
+<p>Hate-Mail-Generator app implementation was really interesting since it has different functions to consider such as creating and previewing campaigns, At this point and after previewing the first and the only campaign in the list I was sure it&rsquo;s a template engine.</p>
+<p>I directly copied the body of the campaign I previewed and try to create my own campaign, But I wasn&rsquo;t able to do this.</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-44.png" alt=""></p>
+<p>After reviewing the body of the email, I was interested in the template function which reflects HTML files in the email body, I tried to reflect the simplest file I can think of which is the <code>index.php</code> file, And I get an error message claiming that there is <code>/templates</code> directory in the app.</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-45.png" alt=""></p>
+<p>After checking the <code>/templates</code> directory, I was able to detect three files, The first two files were already known from the campaign body I previewed.</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-46.png" alt=""></p>
+<p>I tried to access the <code>dhs_admins_only_header.html</code> file which was the third one but it has a previewing restriction.</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-47.png" alt=""></p>
+<p>At this point, It was clear I should bypass this restriction, There was another parameter in the email body called <code>name</code> which held and reflect names dynamically, And after checking the preview request, I found that it reflects from JSON object in the <code>preview_data</code> HTML form element.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-html" data-lang="html"><span style="display:flex;"><span>preview_markup={{template:index.php}}+Hi+{{name}}.....+Guess+what.....+&lt;<span style="color:#f92672">strong</span>&gt;YOU+SUCK!&lt;/<span style="color:#f92672">strong</span>&gt;{{template:cbdj3_grinch_footer.html}}<span style="color:#960050;background-color:#1e0010">&amp;</span>preview_data={&#34;name&#34;:&#34;Alice&#34;,&#34;email&#34;:&#34;alice@test.com&#34;}
+</span></span></code></pre></div><p>I tried to inject the <code>dhs_admins_only_header.html</code> file in the JSON object.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">preview_data=</span>{<span style="color:#f92672">&#34;name&#34;</span>:<span style="color:#e6db74">&#34;template:38dhs_admins_only_header.html&#34;</span>,<span style="color:#f92672">&#34;email&#34;</span>:<span style="color:#e6db74">&#34;alice@test.com&#34;</span>}
+</span></span></code></pre></div><p>But it reflects as a string.</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-48.png" alt=""></p>
+<p>I embedded the whole template object to bypass the string.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-json" data-lang="json"><span style="display:flex;"><span><span style="color:#960050;background-color:#1e0010">preview_data=</span>{<span style="color:#f92672">&#34;name&#34;</span>:<span style="color:#e6db74">&#34;{{template:38dhs_admins_only_header.html}}&#34;</span>,<span style="color:#f92672">&#34;email&#34;</span>:<span style="color:#e6db74">&#34;alice@test.com&#34;</span>}
+</span></span></code></pre></div><p>And I was able to retrieve the seventh flag{5bee8cf2-acf2-4a08-a35f-b48d5e979fdd}!</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-49.png" alt=""></p>
+<h2 id="day-8-forum-use-of-hard-coded-credentials-cwe-798">
+  DAY 8 [Forum]: Use of Hard-coded Credentials (CWE-798)
+  <a href="#day-8-forum-use-of-hard-coded-credentials-cwe-798" class="h-anchor" aria-hidden="true">#</a>
+</h2>
+<p>I start testing Grinch-Forum app by reviewing the existing forums, I was able to detect two usernames in the first and the only post, The first one was <code>grinch</code> which is the post publisher, The second one was <code>max</code> which is the only comment in the post.</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-51.png" alt=""></p>
+<p>At this time I was obviously thinking about brute-forcing the password since I had two usernames, I started by brute-forcing the <code>grinch</code> username, But the password was clearly isn&rsquo;t brute-forceable.</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-52.png" alt=""></p>
+<p>And the same for the <code>max</code> username.</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-53.png" alt=""></p>
+<p>While I was doing OSINT about the grinch, I knew that max is the grinch&rsquo;s dog, And it was clear that max wouldn&rsquo;t be able to speak because it&rsquo;s a dog, And what approved the hypothesis is max comment in the grinch post.</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-54.png" alt=""></p>
+<p>At this time I was thinking what if max password is <em>woofing</em> but in a different way, I generated two wordlists, The first <a href="http://localhost:1313/img/THE-GRINCH-NETWORKS-IS-DOWN%21/attachment-woof.txt" title="woof.txt">woof.txt</a> wordlist was generated manually, And I crafted a python script to generate the second <a href="http://localhost:1313/img/THE-GRINCH-NETWORKS-IS-DOWN%21/attachment-woof2.txt" title="woof2.txt">woof2.txt</a> wordlist, But non of them works as a password for max username, But I can say it was a good idea!</p>
+<p>At this time I knew it was fuzzing time, And after fuzzing the forum I found a PHPMyAdmin panel in the forum directory</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-55.png" alt=""></p>
+<p>PHPMyAdmin always means SQLi and credentials disclosure, I tried to inject the forum and post routes, But it didn&rsquo;t work.</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-56.png" alt=""></p>
+<p>I also reviewed the client-side source-code but I found nothing, I knew the app credentials would be different than the PHPMyAdmin credentials, I disregard this fact and tried to brute-force the credentials with the existing usernames and with different usernames, But it didn&rsquo;t work, I tried to log in with the default PHPMyAdmin credentials, But it didn&rsquo;t work.</p>
+<p>At this time I started copying bootstrap hashes from headers and footers and use them to search in GitHub but I also found nothing, I was thinking what if adam which is the CTF creator left the credentials somewhere in his repositories, I copied his username and searched for his account in GitHub, And I found his account with Grinch-Network forum repository.</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-57.png" alt=""></p>
+<p>And after looking in the commits, I was able to identify the PHPMyAdmin credentials!</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-58.png" alt=""></p>
+<p>I directly logged in at the forum PHPMyAdmin with the new credentials, And I was able to detect usernames and passwords in MD5 hashes!</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-59.png" alt=""></p>
+<p>And after decrypting the <code>grinch</code> MD5 password into <code>BahHumbug</code> and log in.</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-60.png" alt=""></p>
+<p>I was able to retrieve the eighth flag{677db3a0-f9e9-4e7e-9ad7-a9f23e47db8b}! Grinch network will be down soon!</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-61.png" alt=""></p>
+<h2 id="day-9-evil-quiz-sql-injection-cwe-89">
+  DAY 9 [Evil Quiz]: SQL Injection (CWE-89)
+  <a href="#day-9-evil-quiz-sql-injection-cwe-89" class="h-anchor" aria-hidden="true">#</a>
+</h2>
+<p>After a fast tour in the Evil-Quiz app, It was clear that I wouldn&rsquo;t be able to brute-force the admin credentials due to the well-sanitized login error, At this time I was interested in how to app working, And what messages reflected in the response.</p>
+<p>The app is working in three parts:</p>
+<ul>
+<li>The first part is the name post request, Which is setting a cookie session if it doesn&rsquo;t exist.</li>
+<li>The second part is the quiz query post request.</li>
+<li>The last part is reflecting the quiz score results.</li>
+</ul>
+<p>I tried to use different names such as grinch and max, The interesting part of the response is that it reflects the number of players with the same name, For grinch, it was 14 users, And for max, it was 4 users.</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-62.png" alt=""></p>
+<p>At this point I tried to inject the simplest SQLi payload which is <code>grinch'+OR+1=1--+-</code> and the response was really interesting, The player&rsquo;s number with the same name was clearly big which is approving the blind SQLi in the name post request.</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-63.png" alt=""></p>
+<p>I tried another request to make sure with <code>0'+OR+1=0--+-</code> payload and the response was zero which is approving the vulnerability again.</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-64.png" alt=""></p>
+<p>It was clear that I wouldn&rsquo;t be able to exploit this SQLi manually or with sqlmap, So I did a python script for it, With the zero players with the same name response point of view, And I was able to retrieve the admin password which is <code>S3creT_p4ssw0rd-$</code>.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> requests
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> string
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>secret<span style="color:#f92672">=</span>[]
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>var <span style="color:#f92672">=</span> list(string<span style="color:#f92672">.</span>printable)
+</span></span><span style="display:flex;"><span>cookies <span style="color:#f92672">=</span> dict(session<span style="color:#f92672">=</span><span style="color:#e6db74">&#39;f78c0176d0d02bf6e08cf1c1d1491e91&#39;</span>)
+</span></span><span style="display:flex;"><span>headers <span style="color:#f92672">=</span> {<span style="color:#e6db74">&#39;Content-Type&#39;</span>:<span style="color:#e6db74">&#39;application/x-www-form-urlencoded&#39;</span>,<span style="color:#e6db74">&#39;Connection&#39;</span>:<span style="color:#e6db74">&#39;close&#39;</span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> v <span style="color:#f92672">in</span> var:
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> n <span style="color:#f92672">in</span> range(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">17</span>):
+</span></span><span style="display:flex;"><span>        data <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;name=admin&#39; AND substr((select password from admin limit 0,1),</span><span style="color:#e6db74">{}</span><span style="color:#e6db74">,1) = &#39;</span><span style="color:#e6db74">{}</span><span style="color:#e6db74">&#39; -- -&#34;</span><span style="color:#f92672">.</span>format(n,v)
+</span></span><span style="display:flex;"><span>        x <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>post(<span style="color:#e6db74">&#39;https://hackyholidays.h1ctf.com/evil-quiz&#39;</span>, data<span style="color:#f92672">=</span>data, cookies<span style="color:#f92672">=</span>cookies, headers<span style="color:#f92672">=</span>headers)
+</span></span><span style="display:flex;"><span>        y <span style="color:#f92672">=</span> requests<span style="color:#f92672">.</span>get(<span style="color:#e6db74">&#39;https://hackyholidays.h1ctf.com/evil-quiz/score&#39;</span>, cookies<span style="color:#f92672">=</span>cookies)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span> y<span style="color:#f92672">.</span>text<span style="color:#f92672">.</span>find(<span style="color:#e6db74">&#39;There is 0 other player(s) with the same name as you!&#39;</span>) <span style="color:#f92672">!=</span> <span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>:
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">continue</span>
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">else</span>:
+</span></span><span style="display:flex;"><span>            secret<span style="color:#f92672">.</span>insert(n, v)
+</span></span><span style="display:flex;"><span>            <span style="color:#66d9ef">continue</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">if</span> len(secret) <span style="color:#f92672">==</span> <span style="color:#ae81ff">17</span>:
+</span></span><span style="display:flex;"><span>    print(<span style="color:#e6db74">&#39;Your admin password is:&#39;</span>, <span style="color:#e6db74">&#39;&#39;</span><span style="color:#f92672">.</span>join(secret))
+</span></span></code></pre></div><p>I directly logged in as admin, And I was able to retrieve the ninth flag{6e8a2df4-5b14-400f-a85a-08a260b59135}!</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-65.png" alt=""></p>
+<h2 id="day-10-signup-manager-information-disclosure-cwe-200--privilege-escalation-capec-233">
+  DAY 10 [Signup Manager]: Information Disclosure (CWE-200) &amp; Privilege Escalation (CAPEC-233)
+  <a href="#day-10-signup-manager-information-disclosure-cwe-200--privilege-escalation-capec-233" class="h-anchor" aria-hidden="true">#</a>
+</h2>
+<p>The Signup-Manager app was a simple login and signup forms, The first move was obviously trying to sign up my own account and accessing it, But I stumbled with a message, And nothing was interesting in the client-side source code.</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-69.png" alt=""></p>
+<p>I directly started testing the signup form, And while I was testing it, There was an interesting comment in the HTML body claiming that there is a README.md file for assistance.</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-66.png" alt=""></p>
+<p>After downloading the file from the app directory, It was an instructor for the installation of the app.</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-67.png" alt=""></p>
+<p>The file was pointing to another zip file in the app directory which is the app source code.</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-68.png" alt=""></p>
+<p>The source code has four files, But three of them were just reflecting the data, And the <code>index.php</code> file has the functions, So it&rsquo;s obviously our work ground, And after inspecting the file, I was able to detect three interesting parts:</p>
+<ul>
+<li>The first one is the <code>buildUsers</code> function, Which building the users with <code>admin=Y</code> in their data line and gives them access permissions.</li>
+<li>The second one is the <code>addUser</code> function, Which registered all new accounts with <code>admin=N</code> in their data line.</li>
+<li>The third one is the data filter, Which filters all incoming data by certain selected rules.</li>
+</ul>
+<p>I started playing with the app locally by XMAPP, And after signing my own local account up, I was able to detect how the app manages the accounts data in the <code>users.txt</code> file.</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-70.png" alt=""></p>
+<p>I tried to bypass the parameters filters and inject <code>Y</code> char at the end of the user data, But I wouldn&rsquo;t be able to do this due to the filters, And while I was reviewing the filters source code, There was an interesting function filtering the age data which is <code>intval</code> function, And after reading the <a href="https://www.php.net/manual/en/function.intval.php">PHP manual</a>: The intval function is converting doubles to integers by truncating the fractional component of the number, And for example <code>1e5</code> filtered into <code>100000 </code>.</p>
+<p>At this point, My attack components were ready to apply, But I chose to do it locally, and then move to the online app, I started by injecting the age parameter with <code>1e5</code> which move my Lastname for more than three characters, This means I need to add <code>Y</code> to the Lastname third character from the back.</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-71.png" alt=""></p>
+<p>And with this concept, I was able to bypass the filters and privilege my account access.</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-72.png" alt=""></p>
+<p>I directly applied my attack concept in the online app, And I was able to retrieve the tenth flag{99309f0f-1752-44a5-af1e-a03e4150757d}!</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-73.png" alt=""></p>
+<p>But wait, The page was pointing to the <a href="https://hackyholidays.h1ctf.com/r3c0n_server_4fdk59">day 11 app</a>, Which will be private!</p>
+<h2 id="day-11-grinch-recon-sql-injection-cwe-89">
+  DAY 11 [Grinch Recon]: SQL Injection (CWE-89)
+  <a href="#day-11-grinch-recon-sql-injection-cwe-89" class="h-anchor" aria-hidden="true">#</a>
+</h2>
+<p>When I accessed the Grinch-Recon app for the first time, The developing API message gets my interest.</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-74.png" alt=""></p>
+<p>I simply put <code>/API</code> in the app directory, And I was able to access the API status codes docs.</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-75.png" alt=""></p>
+<p>I tried to fuzz the <code>/API/*</code> endpoints, But I wasn&rsquo;t able to detect anything due to the IP restriction.</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-76.png" alt=""></p>
+<p>I went back and after accessing the three-album directories I was interested in the hashes on the <code>/album?hash=</code> parameter, But there was no obvious pattern for brute-forcing or decrypting the hashes.</p>
+<p>At this moment I tried to access each image on its own, And I found the <code>/picture?data=</code> parameter with base64 data, And after decrypting it, I was able to detect the image directory with its auth hash.</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-77.png" alt=""></p>
+<p>At this point I was clearly thinking about internal SSRF to bypass the API IP restriction, I tried to change the image JSON object URL into the API URL and encoded it again into base64, But I wasn&rsquo;t able to send the request due to the auth hash, And I wasn&rsquo;t able to decrypt the auth hash too, And this means I need to find a way to generate my own auth hashes internally.</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-78.png" alt=""></p>
+<p>The simplest thing I can think of was SQLi in the <code>/album?hash=</code> parameter, And it was surprisingly working!</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-79.png" alt=""></p>
+<p>I directly sent the endpoint into sqlmap, And I was able to retrieve the app databases.</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-80.png" alt=""></p>
+<p>The information_schema DB was known as the default database, So I directly retrieved the recon DB tables.</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-83.png" alt=""></p>
+<p>And after dumping the album and the photo tables from the recon DB, I was able to detect that the album table primary key id is used as a foreign key in the photo table (<a href="https://dev.mysql.com/doc/refman/8.0/en/example-foreign-keys.html">MySQL Foreign Key Reference</a>).</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-84.png" alt=""></p>
+<p>This means I can send routed SQLi payload to the image table via the album table and generate my own auth hashes! And the crafted SQLi payload was <code>59gro' UNION SELECT &quot;2' UNION SELECT '1',2,'../api/user' --+-&quot;,'14',1--+-</code>, And there I was able to generate my own hashes and fuzzing the API endpoints.</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-86.png" alt=""></p>
+<p>And after a long fuzzing process, the result was two endpoints which are <code>/api/user</code> and <code>/api/ping</code>, The second one was obviously for API health checking so I started to fuzz the <code>/API/user</code> endpoint parameters, And the result was <code>/api/user?username=</code> and <code>/api/user?password=</code>parameters.</p>
+<p>And from our previous testing process, The <code>Invalid content type detected</code> response always means true, The <code>/api/user</code> parameters map was as:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> username <span style="color:#66d9ef">FROM</span> <span style="color:#66d9ef">user</span> <span style="color:#66d9ef">WHERE</span> username<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> password <span style="color:#66d9ef">FROM</span> <span style="color:#66d9ef">user</span> <span style="color:#66d9ef">WHERE</span> password <span style="color:#f92672">=</span><span style="color:#e6db74">&#34;&#34;</span>;
+</span></span></code></pre></div><p>So I need to embed <code>%</code> at the end of the <code>/api/user?username=g%</code> and <code>/api/user?password=s%</code> parameters to make sure I will get a true response If I was sending the right request as:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-sql" data-lang="sql"><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> username <span style="color:#66d9ef">FROM</span> <span style="color:#66d9ef">user</span> <span style="color:#66d9ef">WHERE</span> username<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;g%&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">SELECT</span> password <span style="color:#66d9ef">FROM</span> <span style="color:#66d9ef">user</span> <span style="color:#66d9ef">WHERE</span> password <span style="color:#f92672">=</span><span style="color:#e6db74">&#34;s%&#34;</span>;
+</span></span></code></pre></div><p>And with this concept, I was able to fuzz username and password, Which are <code>grinchadmin</code> and <code>s4nt4sucks</code>, And I was able to retrieve the eleventh flag{07a03135-9778-4dee-a83c-7ec330728e72}!</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-85.png" alt=""></p>
+<h2 id="day-12-grinch-network-attack-server-reversible-one-way-hash-cwe-328--denial-of-service-cwe-400">
+  DAY 12 [Grinch Network Attack Server]: Reversible One-Way Hash (CWE-328) &amp; Denial of Service (CWE-400)
+  <a href="#day-12-grinch-network-attack-server-reversible-one-way-hash-cwe-328--denial-of-service-cwe-400" class="h-anchor" aria-hidden="true">#</a>
+</h2>
+<p>The Grinch-Network-Attack-Server is a simple DDOS box for attacking Santa&rsquo;s servers, The box has an internal script for the DDOS attack, And the script was functioning the attack by a payload in the <code>/attack-box/launch?payload=</code> parameter, And after decrypting the payload there was a JSON object with two parameters, The first parameter was the target IP, And the last was the target hash.</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-87.png" alt=""></p>
+<p>I tried to flood the internal server and functioning internal attack towards 127.0.0.1, But I needed to bypass the hash protection, And the hash salt was surprisingly brute-forceable which is <code>mrgrinch463</code>, And the python script used for hash salt brute-forcing was:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-python" data-lang="python"><span style="display:flex;"><span><span style="color:#f92672">import</span> hashlib
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>list <span style="color:#f92672">=</span> open(<span style="color:#e6db74">&#39;rockyou.txt&#39;</span>,<span style="color:#e6db74">&#39;r&#39;</span>)
+</span></span><span style="display:flex;"><span>y <span style="color:#f92672">=</span> <span style="color:#e6db74">&#39;5f2940d65ca4140cc18d0878bc398955&#39;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> f <span style="color:#f92672">in</span> list:
+</span></span><span style="display:flex;"><span>    x <span style="color:#f92672">=</span> f<span style="color:#f92672">.</span>rstrip()<span style="color:#f92672">+</span><span style="color:#e6db74">&#34;203.0.113.33&#34;</span>  
+</span></span><span style="display:flex;"><span>    result <span style="color:#f92672">=</span> hashlib<span style="color:#f92672">.</span>md5(x<span style="color:#f92672">.</span>encode())
+</span></span><span style="display:flex;"><span>    result <span style="color:#f92672">=</span> (result<span style="color:#f92672">.</span>hexdigest())
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> result <span style="color:#f92672">==</span> y :
+</span></span><span style="display:flex;"><span>        print(f)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">break</span>
+</span></span></code></pre></div><p>But even after generating a hash for the localhost IP, There was protection against internal DDOS flood.</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-88.png" alt=""></p>
+<p>And this solved by DNS rebinding.</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-89.png" alt=""></p>
+<p>And after generating a hash for the new domain which is <code>7f000001.cb007121.rbndr.us</code>, The grinch network was finally down! And there is the twelfth flag{ba6586b0-e482-41e6-9a68-caf9941b48a0}.</p>
+<p><img src="/img/THE-GRINCH-NETWORKS-IS-DOWN!/attachment-90.png" alt=""></p>
+
+    </div>
+    
+      
+        <div class="pagination">
+          <div class="pagination__title">
+            <span class="pagination__title-h"
+              >Read other posts</span
+            >
+            <hr />
+          </div>
+          <div class="pagination__buttons">
+            
+              <span class="button previous">
+                <a href="/post/demystifying-solidity-wargames-openzeppelins-ethernaut/">
+                  <span class="button__icon">←</span>
+                  <span class="button__text">Demystifying Solidity Wargames: Openzeppelin&#39;s ethernaut</span>
+                </a>
+              </span>
+            
+            
+              <span class="button next">
+                <a href="/post/chaining-vulnerabilities-leads-to-account-takeover/">
+                  <span class="button__text">Chaining vulnerabilities leads to account takeover</span>
+                  <span class="button__icon">→</span>
+                </a>
+              </span>
+            
+          </div>
+        </div>
+      
+    
+
+    
+      
+        
+
+      
+    
+  </article>
+
+      </div>
+
+      
+        <footer class="footer">
+  <div class="footer__inner">
+    
+      <a
+  href="/"
+  class="logo"
+  style="text-decoration: none;"
+>
+  
+
+    <span class="logo__text"
+      >AHZ</span
+    >
+
+  
+</a>
+
+      <div class="copyright">
+        <span>© 2023. All rights reserved.</span>
+
+      </div>
+    
+  </div>
+</footer>
+
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
+
+
+      
+    </div>
+
+    
+  </body>
+</html>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Bug Bounty on AHZ</title>
+    
+    
+    
+    <link>/tags/bug-bounty/</link>
+    <description>Recent content in Bug Bounty on AHZ</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 01 Dec 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/bug-bounty/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Chaining vulnerabilities leads to account takeover</title>
+      <link>/post/chaining-vulnerabilities-leads-to-account-takeover/</link>
+      <pubDate>Tue, 01 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/chaining-vulnerabilities-leads-to-account-takeover/</guid>
+      <description>
+        
+          &lt;img src=&#34;/img/Chaining-vulnerabilities-leads-to-account-takeover/cover.png&#34;/&gt;
+          
+        
+        
+        
+          In this write-up, I will explain how I was able to chain five vulnerabilities that led to one link click account takeover.
+          
+        
+        </description>
+    </item>
+    
+    <item>
+      <title>Bypassing OTP via reset password</title>
+      <link>/post/bypassing-otp-via-reset-password/</link>
+      <pubDate>Thu, 30 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/post/bypassing-otp-via-reset-password/</guid>
+      <description>
+        
+          &lt;img src=&#34;/img/Bypassing-OTP-via-reset-password/cover.jpg&#34;/&gt;
+          
+        
+        
+        
+          In this write-up, I will explain how I was able to bypass one-time password by resetting the password via email address.
+          
+        
+        </description>
+    </item>
+    
+  </channel>
+</rss>

